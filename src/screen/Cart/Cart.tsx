@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-import Auth from '@/components/Auth';
 import { Button } from '@/components/common';
 import Layout from '@/components/layout/Layout';
 import NextImage from '@/components/NextImage';
@@ -186,10 +185,6 @@ const Cart: WithLayout = () => {
   );
 };
 
-Cart.getLayout = (page) => (
-  <Layout>
-    <Auth>{page}</Auth>
-  </Layout>
-);
+Cart.getLayout = (page) => <Layout>{page}</Layout>;
 
 export default Cart;

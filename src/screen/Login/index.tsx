@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import { Button, Input } from '@/components/common';
 import Layout from '@/components/layout/Layout';
 
+import { ROUTES } from '@/constant';
 import { Auth } from '@/screen';
 import { Platform } from '@/shared/enum/platform';
 import { WithLayout } from '@/shared/types';
@@ -53,7 +54,7 @@ const Login: NextPage & WithLayout = () => {
 
       if (res?.ok) {
         setIsLoading(false);
-        router.push('/cart');
+        router.push(ROUTES.HOME);
       }
     },
 

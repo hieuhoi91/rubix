@@ -24,7 +24,7 @@ export interface LoginParams {
 export interface Token {
   access_token: string;
   refresh_token: string;
-  expiresIn: number;
+  expiresIn: string;
 }
 
 export interface User {
@@ -36,6 +36,7 @@ export interface User {
   phone: string;
   avatar: null;
   role: string;
+  card_id: string;
 }
 
 export interface ReqRegister {

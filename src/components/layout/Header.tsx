@@ -36,8 +36,13 @@ const links = [
 
 export default function Header() {
   const dispatch = useAppDispatch();
-  const { data: session } = useSession();
+  const {
+    data: session,
+  }: {
+    data: any;
+  } = useSession();
   const router = useRouter();
+
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   const [openDr, setOpenDr] = React.useState(false);
 
@@ -195,7 +200,7 @@ export default function Header() {
           </ul>
         ) : (
           <div className='flex justify-center'>
-            <span className='lg:mt-2'>{session.user.username}</span>
+            <span className='lg:mt-2'>{session.token.user.username}</span>
             <div className='hidden cursor-pointer px-2 hover:text-yellow-300 lg:block'>
               <SearchHeader />
             </div>
