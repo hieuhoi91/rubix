@@ -1,7 +1,7 @@
+import { Logout } from '@mui/icons-material';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import {
   Badge,
   Button,
@@ -11,29 +11,33 @@ import {
   MenuList,
   Popover,
 } from '@mui/material';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 import React from 'react';
 import { RiCloseCircleFill } from 'react-icons/ri';
 
+import SearchHeader from '@/components/layout/SearchHeader';
 import NextImage from '@/components/NextImage';
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { ROUTES } from '@/constant';
 import { login, register } from '@/features/auth/authSlice';
 import { fetchTotal } from '@/features/cart/cartSlice';
 
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/collections/all', label: 'Shop' },
-  { href: '/collections', label: 'Collections' },
-  { href: '/blogs', label: 'Blogs' },
-  { href: '/us', label: 'Contact Us' },
+  { href: '/', label: 'Trang chủ' },
+  { href: '/collections/all', label: 'Cửa hàng' },
+  { href: '/collections', label: 'Bộ sưu tập' },
+  { href: '/blogs', label: 'Bài viết' },
+  { href: '/us', label: 'Liên hệ' },
 ];
 
 export default function Header() {
   const dispatch = useAppDispatch();
   const { data: session } = useSession();
+  const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   const [openDr, setOpenDr] = React.useState(false);
 
@@ -74,9 +78,7 @@ export default function Header() {
         <IconButton onClick={handleDrawerOpen}>
           <MenuIcon className='cursor-pointer' />
         </IconButton>
-        <IconButton>
-          <SearchOutlinedIcon />
-        </IconButton>
+        <SearchHeader />
       </div>
       <Link href='/'>
         <NextImage
@@ -121,7 +123,7 @@ export default function Header() {
             <MenuItem
               key={`${href}${label}`}
               onClick={() => handleNavigate(href)}
-              className='flex hover:text-yellow-300'
+              className='flex p-3 hover:text-yellow-300'
             >
               <Link href={href}>
                 <span className='w-full'>{label}</span>
@@ -146,7 +148,31 @@ export default function Header() {
               }}
             >
               <div className='flex flex-col items-center justify-center gap-2 p-4'>
-                <Button size='small' onClick={() => signOut()}>
+                <Button
+                  startIcon={
+                    <Image
+                      src='/svg/order.svg'
+                      width={20}
+                      height={20}
+                      alt='avatar'
+                      className='fill-[#1976d2]'
+                    />
+                  }
+                  size='small'
+                  onClick={() => {
+                    handlePopoverClose();
+                    router.push(ROUTES.ORDER);
+                  }}
+                >
+                  Đơn đã mua
+                </Button>
+              </div>
+              <div className='flex flex-col items-center justify-center gap-2 p-4'>
+                <Button
+                  startIcon={<Logout />}
+                  size='small'
+                  onClick={() => signOut()}
+                >
                   Đăng xuất
                 </Button>
               </div>
@@ -157,24 +183,24 @@ export default function Header() {
           <ul className='flex min-w-[170px] items-center justify-center'>
             <li className='pr-1 hover:text-yellow-300 xl:block'>
               <Link onClick={() => dispatch(login())} href='/login'>
-                Login
+                Đăng nhập
               </Link>
             </li>
             <li className=' xl:block'>/</li>
             <li className=' pl-1 pr-6 hover:text-yellow-300 xl:block'>
               <Link onClick={() => dispatch(register())} href='/signup'>
-                Sign up
+                Đăng ký
               </Link>
             </li>
-            <li>|</li>
           </ul>
         ) : (
-          <div>{session.user.username}</div>
+          <div className='flex justify-center'>
+            <span className='lg:mt-2'>{session.user.username}</span>
+            <div className='hidden cursor-pointer px-2 hover:text-yellow-300 lg:block'>
+              <SearchHeader />
+            </div>
+          </div>
         )}
-        <div className='hidden cursor-pointer px-2 hover:text-yellow-300 lg:block'>
-          <SearchOutlinedIcon />
-        </div>
-        <span className='hidden lg:block'>|</span>
         {session && (
           <Link href='/cart'>
             <Badge

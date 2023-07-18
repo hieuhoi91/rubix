@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import BgBanner from '@/components/common/BgBanner';
 import Layout from '@/components/layout/Layout';
@@ -20,7 +21,7 @@ const Collections: WithLayout = () => {
         setCategories(res.data.data);
         setIsLoading(true);
       } catch (error) {
-        console.log(error);
+        toast.error(error);
       }
     };
     getCollection();
@@ -28,7 +29,7 @@ const Collections: WithLayout = () => {
 
   return (
     <div className='flex w-full flex-col items-center justify-center'>
-      <BgBanner nav='Collections' />
+      <BgBanner nav='Bộ sưu tập' />
 
       {isLoading ? (
         <div className='my-20 grid w-full max-w-[90%] grid-cols-1 gap-6 sm:grid-cols-2 lg:max-w-[80%] lg:grid-cols-3 xl:grid-cols-4'>
@@ -48,13 +49,13 @@ const Collections: WithLayout = () => {
                 {category.name}
               </h4>
               <span className='cursor-pointer transition-all hover:text-amber-400'>
-                17 products
+                {category.item_count} sản phẩm
               </span>
               <Link
                 href={`/collections/${category.slug}`}
                 className='bg-black px-4 py-2 font-semibold text-white transition-all hover:bg-amber-400'
               >
-                SHOP THE COLLECTION
+                Khám phá bộ sưu tập
               </Link>
             </div>
           ))}

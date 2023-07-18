@@ -4,9 +4,12 @@ import axiosClient from '@/api/axiosClient';
 import { ReqCartItem, ResCart } from '@/shared/types/cartType';
 import { ResCategories } from '@/shared/types/categories';
 import { ReqSearchProduct } from '@/shared/types/itemType';
+import { OrderRes } from '@/shared/types/orderType';
 import { ResProducts } from '@/shared/types/productType';
+import { ReviewRes } from '@/shared/types/reviewType';
 
 import {
+  ReqCreateOrder,
   ReqLogin,
   ReqRefresh,
   ReqRegister,
@@ -14,6 +17,7 @@ import {
   ResRefreshToken,
   ResRegister,
 } from '../shared/types/authType';
+import { CancelOrder, CreateRating } from '../shared/types/ratingType';
 
 export const CmsApi = {
   login: async (req: ReqLogin) => {
@@ -35,9 +39,17 @@ export const CmsApi = {
     ).data;
   },
 
-  getProducts: ({ sort, page, take, cates_slug }: ReqSearchProduct) => {
+  getProducts: ({
+    sort,
+    page,
+    take,
+    cates_slug,
+    search,
+    start_price,
+    end_price,
+  }: ReqSearchProduct) => {
     return axiosClient.get<ResProducts>('/api/item/search', {
-      params: { sort, page, take, cates_slug },
+      params: { sort, page, take, cates_slug, search, start_price, end_price },
     });
   },
 
@@ -47,6 +59,9 @@ export const CmsApi = {
 
   getProductsByCategoryId: ({ id }: { id: string }) => {
     return axiosClient.get<ResProducts>(`/api/item/${id}`);
+  },
+  getDetailItem: (id: string) => {
+    return axiosClient.get(`api/item/${id}`);
   },
 
   getCart: () => {
@@ -61,5 +76,33 @@ export const CmsApi = {
   deleteCartItem: (id: string[]) => {
     const params = { itemsId: id };
     return axiosClient.delete(`api/cart/delete-cart-item`, { data: params });
+  },
+  createOrder: (data: ReqCreateOrder[]) => {
+    return axiosClient.post(`api/order/create`, {
+      data,
+    });
+  },
+
+  getOrder: () => {
+    return axiosClient.get<OrderRes>(`api/order/list`);
+  },
+
+  cancelOrder: ({ order_id }: CancelOrder) => {
+    return axiosClient.post<CancelOrder>(`api/order/cancel`, {
+      order_id,
+    });
+  },
+
+  getReview: (id: string) => {
+    return axiosClient.get<ReviewRes>(`/api/review/${id}`);
+  },
+
+  createReview: ({ content, item_id, rating, order_item_id }: CreateRating) => {
+    return axiosClient.post<CreateRating>(`api/review/create`, {
+      content,
+      rating,
+      item_id,
+      order_item_id,
+    });
   },
 };
