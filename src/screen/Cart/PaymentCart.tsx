@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button, Modal } from '@mantine/core';
+import { Button, Modal } from '@mantine/core';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -13,6 +13,7 @@ import FormProvider from '@/components/hook-form/FormProvider';
 import { CmsApi } from '@/api/cms-api';
 import { useAppSelector } from '@/app/hooks';
 import { AppDispatch } from '@/app/store';
+import { ROUTES } from '@/constant';
 import {
   fetchTotal,
   selectItemPayment,
@@ -42,15 +43,15 @@ export const PaymentCart: React.FC<Props> = ({ typePayment }) => {
   const totalItemPayment = useAppSelector(selectTotalItemPayment);
 
   const PaymentSchema = Yup.object().shape({
-    userNameCard: Yup.string().required('Vui lòng nhập tên chủ thẻ'),
+    userNameCard: Yup.string().required("Please enter cardholder's name"),
     numberCard: Yup.string()
-      .required('Vui lòng nhập số thẻ')
-      .matches(/^[0-9]+$/, 'Số thẻ không hợp lệ')
-      .min(16, 'Số thẻ không hợp lệ')
-      .max(16, 'Số thẻ không hợp lệ'),
+      .required('Please enter card number')
+      .matches(/^[0-9]+$/, 'Invalid card number')
+      .min(16, 'Invalid card number')
+      .max(16, 'Invalid card number'),
     dateCard: Yup.string()
-      .required('Vui lòng nhập hạn sử dụng')
-      .test('valid-date', 'Hạn sử dụng không hợp lệ', function (value) {
+      .required('Please enter expiration date')
+      .test('valid-date', 'Invalid expiry date', function (value) {
         if (!value) return false;
 
         const [month, year] = value.split('/');
@@ -63,10 +64,10 @@ export const PaymentCart: React.FC<Props> = ({ typePayment }) => {
       }),
     CVV: Yup.string()
 
-      .required('Vui lòng nhập CVV')
-      .matches(/^[0-9]+$/, 'CVV không hợp lệ')
-      .min(3, 'CVV không hợp lệ')
-      .max(3, 'CVV không hợp lệ'),
+      .required('Please enter CVV')
+      .matches(/^[0-9]+$/, 'Invalid CVV')
+      .min(3, 'Invalid CVV')
+      .max(3, 'Invalid CVV'),
   });
 
   const defaultValues: FormValuesProps = {
@@ -92,15 +93,15 @@ export const PaymentCart: React.FC<Props> = ({ typePayment }) => {
 
       try {
         const _ = await CmsApi.createOrder(dataItemReq);
-        toast.success('Mua hàng thành công');
+        toast.success('Purchase successfully');
         dispatch(fetchTotal());
         dispatch(setOpenPayment(false));
       } catch (error) {
         if (error.response.status === 401) {
-          toast.error('Vui lòng đăng nhập');
-          router.push('/login');
+          toast.error('Please login');
+          router.push(ROUTES.LOGIN);
         } else {
-          toast.error('Mua hàng thất bại');
+          toast.error('Purchase failed');
         }
       }
     } else {
@@ -112,15 +113,15 @@ export const PaymentCart: React.FC<Props> = ({ typePayment }) => {
           }))
         );
         const _ = await CmsApi.createOrder(dataItemReq);
-        toast.success('Mua hàng thành công');
+        toast.success('Purchase successfully');
         dispatch(fetchTotal());
         dispatch(setOpenPayment(false));
       } catch (error) {
         if (error.response.status === 401) {
-          toast.error('Vui lòng đăng nhập');
-          router.push('/login');
+          toast.error('Please login');
+          router.push(ROUTES.LOGIN);
         } else {
-          toast.error('Mua hàng thất bại');
+          toast.error('Purchase failed');
         }
       }
     }
@@ -131,84 +132,77 @@ export const PaymentCart: React.FC<Props> = ({ typePayment }) => {
   const handleClose = () => dispatch(setOpenPayment(false));
 
   return (
-    <Modal
-      opened={openPayment}
-      onClose={handleClose}
-      aria-labelledby='modal-modal-title'
-      aria-describedby='modal-modal-description'
-    >
-      <Box>
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <div className='flex items-center justify-center bg-blue-300 p-2'>
-            <div className='flex h-auto flex-col gap-2 rounded-lg bg-white p-3'>
-              <p className='text-xl font-semibold'>Payment details</p>
-              <div className='input_text relative mt-6'>
+    <Modal opened={openPayment} onClose={handleClose}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <div className='flex items-center justify-center bg-blue-300 p-2'>
+          <div className='flex h-auto flex-col gap-2 rounded-lg bg-white p-3'>
+            <p className='text-xl font-semibold'>Payment details</p>
+            <div className='input_text relative mt-6'>
+              <RHFTextField
+                name='userNameCard'
+                type='text'
+                className='h-12 w-full border-b px-2 pl-7 outline-none transition-all focus:border-blue-900 '
+                placeholder='Tên'
+              />
+              <span className='absolute left-0 -top-5 text-sm'>
+                Account name
+              </span>
+              <i className='fa fa-user absolute left-2 top-4 text-gray-400'></i>
+            </div>
+            <div className='input_text relative mt-8'>
+              <RHFTextField
+                name='numberCard'
+                type='text'
+                className='h-12 w-full border-b px-2 pl-7 outline-none transition-all focus:border-blue-900 '
+                placeholder='0000 0000 0000 0000'
+              />
+              <span className='absolute left-0 -top-5 text-sm'>
+                Card number
+              </span>
+              <i className='fa fa-credit-card absolute left-2 top-[14px] text-sm text-gray-400'></i>
+            </div>
+            <div className='mt-8 flex gap-5 '>
+              <div className='input_text relative w-full'>
                 <RHFTextField
-                  name='userNameCard'
+                  name='dateCard'
                   type='text'
                   className='h-12 w-full border-b px-2 pl-7 outline-none transition-all focus:border-blue-900 '
-                  placeholder='Tên'
+                  placeholder='mm/yyyy'
                 />
-                <span className='absolute left-0 -top-5 text-sm'>
-                  Account name
-                </span>
-                <i className='fa fa-user absolute left-2 top-4 text-gray-400'></i>
+                <span className='absolute left-0 -top-5 text-sm'>Expiry</span>
+                <i className='fa fa-calendar-o absolute left-2 top-4 text-gray-400'></i>
               </div>
-              <div className='input_text relative mt-8'>
+              <div className='input_text relative w-full'>
                 <RHFTextField
-                  name='numberCard'
+                  name='CVV'
                   type='text'
                   className='h-12 w-full border-b px-2 pl-7 outline-none transition-all focus:border-blue-900 '
-                  placeholder='0000 0000 0000 0000'
+                  placeholder='000'
                 />
-                <span className='absolute left-0 -top-5 text-sm'>
-                  Card number
-                </span>
-                <i className='fa fa-credit-card absolute left-2 top-[14px] text-sm text-gray-400'></i>
-              </div>
-              <div className='mt-8 flex gap-5 '>
-                <div className='input_text relative w-full'>
-                  <RHFTextField
-                    name='dateCard'
-                    type='text'
-                    className='h-12 w-full border-b px-2 pl-7 outline-none transition-all focus:border-blue-900 '
-                    placeholder='mm/yyyy'
-                  />
-                  <span className='absolute left-0 -top-5 text-sm'>Expiry</span>
-                  <i className='fa fa-calendar-o absolute left-2 top-4 text-gray-400'></i>
-                </div>
-                <div className='input_text relative w-full'>
-                  <RHFTextField
-                    name='CVV'
-                    type='text'
-                    className='h-12 w-full border-b px-2 pl-7 outline-none transition-all focus:border-blue-900 '
-                    placeholder='000'
-                  />
-                  <span className='absolute left-0 -top-4 text-sm'>CVV</span>
-                  <i className='fa fa-lock absolute left-2 top-4 text-gray-400'></i>
-                </div>
-              </div>
-              {typePayment === 'one' && items[0]?.item ? (
-                <p className='mt-10 text-center text-lg font-semibold text-gray-600'>
-                  Total amount: ${items[0].item.price * items[0].quantity}.00
-                </p>
-              ) : (
-                <p className='mt-10 text-center text-lg font-semibold text-gray-600'>
-                  Total amount: ${totalItemPayment}.00
-                </p>
-              )}
-              <div className='mt-2 flex justify-center'>
-                <Button
-                  className='pay mb-3 h-12 w-1/2 cursor-pointer rounded-lg bg-orange-600 text-white outline-none transition-all hover:bg-orange-700'
-                  type='submit'
-                >
-                  Pay
-                </Button>
+                <span className='absolute left-0 -top-4 text-sm'>CVV</span>
+                <i className='fa fa-lock absolute left-2 top-4 text-gray-400'></i>
               </div>
             </div>
+            {typePayment === 'one' && items[0]?.item ? (
+              <p className='mt-10 text-center text-lg font-semibold text-gray-600'>
+                Total amount: ${items[0].item.price * items[0].quantity}.00
+              </p>
+            ) : (
+              <p className='mt-10 text-center text-lg font-semibold text-gray-600'>
+                Total amount: ${totalItemPayment}.00
+              </p>
+            )}
+            <div className='mt-2 flex justify-center'>
+              <Button
+                className='pay mb-3 h-12 w-1/2 cursor-pointer rounded-lg bg-orange-600 text-white outline-none transition-all hover:bg-orange-700'
+                type='submit'
+              >
+                Pay
+              </Button>
+            </div>
           </div>
-        </FormProvider>
-      </Box>
+        </div>
+      </FormProvider>
     </Modal>
   );
 };

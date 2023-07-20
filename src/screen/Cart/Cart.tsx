@@ -139,30 +139,28 @@ const Cart: WithLayout = () => {
                       <p>${item.item.price}.00</p>
                       <p className='hidden lg:block'>{item.item.description}</p>
                     </div>
-                    <div className='flex justify-between'>
-                      <span>
-                        <ButtonCart
-                          onClick={() =>
-                            handleDeleteToCart({
-                              item: item,
-                              quantity: -1,
-                            })
-                          }
-                        >
-                          <MdRemove />
-                        </ButtonCart>
-                        <ButtonCart title={String(item.quantity)} />
-                        <ButtonCart
-                          onClick={() =>
-                            handleAddToCart({
-                              item: item,
-                              quantity: 1,
-                            })
-                          }
-                        >
-                          <MdAdd />
-                        </ButtonCart>
-                      </span>
+                    <div className='flex justify-start'>
+                      <ButtonCart
+                        onClick={() =>
+                          handleDeleteToCart({
+                            item: item,
+                            quantity: -1,
+                          })
+                        }
+                      >
+                        <MdRemove />
+                      </ButtonCart>
+                      <ButtonCart title={String(item.quantity)} />
+                      <ButtonCart
+                        onClick={() =>
+                          handleAddToCart({
+                            item: item,
+                            quantity: 1,
+                          })
+                        }
+                      >
+                        <MdAdd />
+                      </ButtonCart>
                     </div>
                   </td>
                   <td>

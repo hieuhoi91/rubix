@@ -1,6 +1,6 @@
 // form
 // @mui
-import { FileInput } from '@mantine/core';
+import { Input } from '@mantine/core';
 import { Controller, useFormContext } from 'react-hook-form';
 
 // ----------------------------------------------------------------------
@@ -13,7 +13,7 @@ export default function RHFTextField({ name, helperText, ...other }: any) {
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <FileInput
+        <Input
           {...field}
           fullWidth
           value={

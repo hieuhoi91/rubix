@@ -29,10 +29,12 @@ const ItemSwiper: FC<ISwiper> = (item) => {
         </h1>
         <Link
           href='/collections/all'
-          className='slider-button absolute animate-arrow-top rounded-md bg-black py-[14px] px-8 text-white transition-all hover:bg-amber-400'
+          className='slider-button absolute flex animate-arrow-top rounded-md bg-black py-[14px] px-8 text-white transition-all hover:bg-amber-400'
         >
           <span className='font-semibold'>Start Shopping</span>
-          <MdKeyboardArrowRight />
+          <span className='text-2xl'>
+            <MdKeyboardArrowRight />
+          </span>
         </Link>
       </div>
     </div>

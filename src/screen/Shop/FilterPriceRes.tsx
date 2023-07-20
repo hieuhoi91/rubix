@@ -67,7 +67,7 @@ const FilterPriceRes: React.FC<ProductCategoriesProps> = ({
               } as ReqSearchProduct)
             }
           >
-            Lọc
+            Filter
           </Button>
         </li>
       </ul>

@@ -56,7 +56,7 @@ const ProductItem = ({ item }: { item: Product }) => {
           <div className='absolute right-4 top-4 flex flex-col gap-2'>
             <span
               onClick={() => handleAddToCart({ itemId: item.id, quantity: 1 })}
-              className='flex h-8 w-8 items-center justify-center rounded-md bg-white transition-all hover:bg-amber-400 hover:text-white xl:h-12 xl:w-12'
+              className='flex h-8 w-8 items-center justify-center rounded-md bg-white text-2xl transition-all hover:bg-amber-400 hover:text-white xl:h-12 xl:w-12'
             >
               <MdOutlineLocalMall />
             </span>
