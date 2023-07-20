@@ -30,13 +30,13 @@ export const OrderDetails = ({ orders }: OrderDetailProps) => {
   const handleCancelOrder = async (id: string) => {
     try {
       await CmsApi.cancelOrder({ order_id: id });
-      toast.success('Hủy đơn hàng thành công');
+      toast.success('Canceled order successfully');
       dispatch(setLoadingOrders(true));
       const res = await CmsApi.getOrder();
       dispatch(addOrder(res.data.data));
       dispatch(setLoadingOrders(false));
     } catch (error) {
-      toast.error('Có lỗi xảy ra');
+      toast.error('Canceled order failed');
     }
   };
 
@@ -47,13 +47,13 @@ export const OrderDetails = ({ orders }: OrderDetailProps) => {
         <div className='flex flex-col'>
           <div className='flex items-center'>
             <StoreIcon />
-            <span className='font-bold'>Cửa hàng Rubix</span>
+            <span className='font-bold'>Shop Rubix</span>
           </div>
           <div className='flex'>
             <span className='font-extrabold '>
-              Tổng tiền đơn hàng:&nbsp;
+              Total order amount:&nbsp;
               <span className='text-red-500'>
-                {orders.total_price.toLocaleString()}đ
+                ${orders.total_price.toLocaleString()}.00
               </span>
             </span>
           </div>
@@ -67,7 +67,7 @@ export const OrderDetails = ({ orders }: OrderDetailProps) => {
                 }}
               >
                 <span className='mr-3 h-8 w-11 cursor-pointer border bg-red-500 p-1 text-white'>
-                  Hủy
+                  Cancel
                 </span>
                 <LocalShippingIcon />
                 {OrderStatus[orders.status]}
@@ -75,7 +75,9 @@ export const OrderDetails = ({ orders }: OrderDetailProps) => {
             </div>
           )}
           {orders.status === 'cancelled' && (
-            <span className='ml-1 h-8 w-16 border bg-red-500 p-1'>Đã hủy</span>
+            <span className='ml-1 h-8 w-16 border bg-red-500 p-1'>
+              Cancelled
+            </span>
           )}
           <QuestionMarkIcon className='mt-[3px] h-5 w-5 cursor-pointer rounded-xl border border-dark text-black' />
           <div
@@ -102,7 +104,7 @@ export const OrderDetails = ({ orders }: OrderDetailProps) => {
               onClose={handlePopoverClose}
               disableRestoreFocus
             >
-              <Typography sx={{ p: 1 }}>Cập nhật mới nhất</Typography>
+              <Typography sx={{ p: 1 }}>Latest updates</Typography>
               <Typography sx={{ p: 1 }}>
                 {formatTime(orders.updated_at).time1.split('.')[0]}&nbsp;
                 {formatTime(orders.created_at).date}

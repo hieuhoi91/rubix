@@ -169,7 +169,7 @@ export default function Header() {
                     router.push(ROUTES.ORDER);
                   }}
                 >
-                  PU Order
+                  Order
                 </Button>
               </div>
               <div className='flex flex-col items-center justify-center gap-2 p-4'>

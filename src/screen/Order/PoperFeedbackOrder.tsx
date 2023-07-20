@@ -52,7 +52,7 @@ const PoperFeedbackOrder = ({ item, setIsReviewed }: Props) => {
           onClick={handleOpen}
           className='ml-1 cursor-pointer border border-yellow-300 p-1'
         >
-          Đánh giá
+          Feedback
         </span>
         <Modal
           open={open}

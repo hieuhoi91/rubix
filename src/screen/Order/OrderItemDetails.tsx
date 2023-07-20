@@ -29,24 +29,24 @@ const OrderItemDetails = ({ item, status }: Props) => {
         <div className='flex gap-1'>
           {item.item.cost < item.item.price && (
             <div className='text-[#88b59c] line-through'>
-              {item.item.cost.toLocaleString()}đ
+              ${item.item.cost.toLocaleString()}.00
             </div>
           )}
           <div className='font-bold text-red-500'>
-            {item.item.price.toLocaleString()}đ
+            ${item.item.price.toLocaleString()}.00
           </div>
         </div>
       </div>
       <div className='flex items-center justify-between'>
         <div className='font-bold text-red-500'>
-          Tổng tiền: {item.price * item.quantity}đ
+          Total amount: ${item.price * item.quantity}.00
         </div>
         <div>
           {status === 'completed' && !isReviewed && (
             <PoperFeedbackOrder item={item} setIsReviewed={setIsReviewed} />
           )}
           {status === 'completed' && isReviewed && (
-            <span className='ml-1 border bg-green-300 p-1'>Đã đánh giá</span>
+            <span className='ml-1 border bg-green-300 p-1'>Have evaluated</span>
           )}
         </div>
       </div>
