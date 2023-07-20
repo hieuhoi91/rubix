@@ -12,19 +12,19 @@ interface PropsContact {
 
 const data: PropsContact[] = [
   {
-    field: 'Địa chỉ:',
-    value: '113 Bà Huyện Thanh Quan, Phường 9, Quận 3, TP.HCM',
+    field: 'Add:',
+    value: '113 Dong Bac, Tan Chanh Hiep, District 12, TP.HCM',
   },
   {
-    field: 'Số điện thoại:',
+    field: 'Phone:',
     value: '+1 800 1236879',
   },
   {
     field: 'Email:',
-    value: 'thanhbkbk111@gmail.com',
+    value: 'hieuhoi912002@gmail.com',
   },
   {
-    field: 'Thời gian mở của:',
+    field: 'Open:',
     value: 'Mon - Fri: 8:00 - 18:00',
   },
 ];
@@ -43,9 +43,11 @@ const Contact: WithLayout = () => {
       <div className='flex w-full items-start justify-center'>
         <div className='my-20 flex max-w-[80%] items-start justify-between gap-10'>
           <div className='flex w-1/2 flex-col gap-6'>
-            <h3 className='font-semibold'>Liên hệ chúng tôi</h3>
+            <h3 className='font-semibold'>CONTACT US</h3>
             <p className='text-gray-700'>
-              Hãy liên hệ với chúng tôi để không có hậu quả phiền toái.
+              Nor again is there anyone who loves or pursues or desires to
+              obtain pain of itself, because it is pain.no annoying
+              consequences.
             </p>
             <div className='flex flex-col gap-2 text-gray-700'>
               {data.map((item) => (
@@ -57,14 +59,14 @@ const Contact: WithLayout = () => {
             </div>
           </div>
           <form className='flex w-1/2 flex-col gap-4'>
-            <Input type='text' placeholder='Tên' />
+            <Input type='text' placeholder='Name' />
             <Input type='text' placeholder='Email' className='rounded' />
             <textarea
-              placeholder='Tin nhắn'
+              placeholder='Message'
               className='mb-4 h-32 w-full rounded border border-gray-300 pt-4 pl-2 outline-none'
             />
             <button className='h-14 w-full rounded border border-gray-300 transition-all hover:border-amber-400 hover:text-amber-400'>
-              <span>Gửi tin nhắn</span>
+              <span>SEND MESSAGE</span>
             </button>
           </form>
         </div>

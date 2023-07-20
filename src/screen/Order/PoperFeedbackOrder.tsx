@@ -38,10 +38,10 @@ const PoperFeedbackOrder = ({ item, setIsReviewed }: Props) => {
         item_id: item.item.id,
         order_item_id: item.id,
       });
-      toast.success('Đánh giá thành công');
+      toast.success('Feedback successfully');
       setIsReviewed(true);
     } catch (error) {
-      toast.error('Đã có lỗi xảy ra');
+      toast.error('Error feedback');
     }
     handleClose();
   };
@@ -78,23 +78,23 @@ const PoperFeedbackOrder = ({ item, setIsReviewed }: Props) => {
                 <div className='flex gap-1'>
                   {item.item.cost < item.item.price && (
                     <div className='text-[#88b59c] line-through'>
-                      {item.item.cost.toLocaleString()}đ
+                      ${item.item.cost.toLocaleString()}.00
                     </div>
                   )}
                   <div className='font-bold text-red-500'>
-                    {item.item.price.toLocaleString()}đ
+                    ${item.item.price.toLocaleString()}.00
                   </div>
                 </div>
               </div>
               <div className='flex items-center justify-between'>
                 <div className='font-bold text-red-500'>
-                  Tổng tiền: {item.price * item.quantity}đ
+                  Total amount: ${item.price * item.quantity}.00
                 </div>
               </div>
               <Divider className='my-1' />
             </div>
             <div className='flex w-full flex-col items-center justify-center'>
-              <Typography>Bạn có hài lòng với sản phẩm</Typography>
+              <Typography>Are you satisfied with the product?</Typography>
               <Rating
                 name='simple-controlled'
                 value={rating}
@@ -118,7 +118,7 @@ const PoperFeedbackOrder = ({ item, setIsReviewed }: Props) => {
                 onClick={handleFeedback}
                 className='mt-2 ml-1 rounded-lg bg-[#88b59c] px-2 py-1 text-white'
               >
-                Gửi đánh giá
+                Submit Feedback
               </button>
             </div>
           </Box>

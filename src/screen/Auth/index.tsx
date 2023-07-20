@@ -26,7 +26,7 @@ const Auth: NextPage<LoginProps> & WithLayout = ({ children }) => {
             } flex items-center justify-center text-xl font-semibold`}
             onClick={() => dispatch(login())}
           >
-            Đăng nhập
+            Login
           </Link>
           <Link
             href='/signup'
@@ -35,7 +35,7 @@ const Auth: NextPage<LoginProps> & WithLayout = ({ children }) => {
             } flex items-center justify-center text-xl font-semibold`}
             onClick={() => dispatch(register())}
           >
-            Tạo tài khoản
+            Register
           </Link>
         </div>
         <div className='px-10 pt-4'>{children}</div>

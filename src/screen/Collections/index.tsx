@@ -29,7 +29,7 @@ const Collections: WithLayout = () => {
 
   return (
     <div className='flex w-full flex-col items-center justify-center'>
-      <BgBanner nav='Bộ sưu tập' />
+      <BgBanner nav='Collections' />
 
       {isLoading ? (
         <div className='my-20 grid w-full max-w-[90%] grid-cols-1 gap-6 sm:grid-cols-2 lg:max-w-[80%] lg:grid-cols-3 xl:grid-cols-4'>
@@ -49,13 +49,13 @@ const Collections: WithLayout = () => {
                 {category.name}
               </h4>
               <span className='cursor-pointer transition-all hover:text-amber-400'>
-                {category.item_count} sản phẩm
+                {category.item_count} product
               </span>
               <Link
                 href={`/collections/${category.slug}`}
                 className='bg-black px-4 py-2 font-semibold text-white transition-all hover:bg-amber-400'
               >
-                Khám phá bộ sưu tập
+                SHOP THE COLLECTION
               </Link>
             </div>
           ))}

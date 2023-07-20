@@ -61,7 +61,7 @@ const PoperFilterCategories: React.FC<ProductCategoriesProps> = ({
         onClick={handleClose}
       >
         <div className='border-b px-4 py-1'>
-          <h4 className='mb-10'>Danh mục sản phẩm</h4>
+          <h4 className='mb-10'>Product Categories</h4>
           <ul className='flex w-full flex-col gap-4 '>
             <li
               onClick={handleAllCategoriesClick}
@@ -88,7 +88,7 @@ const PoperFilterCategories: React.FC<ProductCategoriesProps> = ({
                   handleSort({ page: 1, take: 12 });
                 }}
               >
-                Tất cả sản phẩm
+                All products
               </Link>
             </li>
             {categories.map((item) => (

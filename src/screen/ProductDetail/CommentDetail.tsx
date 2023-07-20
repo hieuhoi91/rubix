@@ -24,7 +24,7 @@ const CommentDetail = () => {
 
   return (
     <div className='flex w-full flex-col'>
-      <span className='mb-4 font-bold'>ĐÁNH GIÁ SẢN PHẨM</span>
+      <span className='mb-4 font-bold'>Product Reviews</span>
       <div className='mb-4 flex w-full flex-col gap-8'>
         {reviews.length > 0 &&
           reviews.map((review) => (

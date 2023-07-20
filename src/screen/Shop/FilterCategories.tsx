@@ -35,7 +35,7 @@ const FilterCategories: React.FC<ProductCategoriesProps> = ({
 
   return (
     <div className='relative border-b pb-10'>
-      <h4 className='absolute -top-14 mb-10'>Danh mục sản phẩm</h4>
+      <h4 className='absolute -top-14 mb-10'>Product Categories</h4>
       <ul className='flex w-full flex-col gap-4 '>
         <li
           onClick={handleAllCategoriesClick}
@@ -62,7 +62,7 @@ const FilterCategories: React.FC<ProductCategoriesProps> = ({
               handleSort({ page: 1, take: 12 });
             }}
           >
-            Tất cả sản phẩm
+            All Products
           </Link>
         </li>
         {categories.map((item) => (

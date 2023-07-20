@@ -80,11 +80,11 @@ const ProductItem = ({ item }: { item: Product }) => {
                 item.price ? 'line-through' : null
               } text-base font-light text-gray-700`}
             >
-              ₫{item.cost}
+              ${item.cost}.00
             </span>
             {item.price && (
               <span className='text-base font-light text-amber-400'>
-                ₫{item.price}
+                ${item.price}.00
               </span>
             )}
           </div>

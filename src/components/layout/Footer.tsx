@@ -13,23 +13,23 @@ import React from 'react';
 import NextImage from '@/components/NextImage';
 
 const infoCompany: string[] = [
-  'Tài khoản của tôi',
-  'Theo dõi đơn hàng của bạn',
-  'Các câu hỏi thường gặp',
-  'Phương thức thanh toán',
-  'Hướng dẫn vận chuyển',
-  'Hỗ trợ sản phẩm',
-  'Số dư thẻ quà tặng',
+  'My Account',
+  'Track Your Order',
+  'FAQs',
+  'Payment Methods',
+  'Shipping Guide',
+  'Products Support',
+  'Gift Card Balance',
 ];
 
 const moreFromRubix: { label: string; href: string }[] = [
-  { label: 'Về Rubix', href: 'javascript:void(0)' },
-  { label: 'Cam kết của chúng tôi', href: 'javascript:void(0)' },
-  { label: 'Điều khoản và điều kiện', href: 'javascript:void(0)' },
-  { label: 'Chính sách đổi trả', href: '/policy/return' },
-  { label: 'Chính sách bảo hành', href: '/policy/warranty' },
-  { label: 'Chính sách giao hàng', href: '/policy/shipping' },
-  { label: 'Bản đồ', href: '/us' },
+  { label: 'About Rubix', href: 'javascript:void(0)' },
+  { label: 'Our Guarantees', href: 'javascript:void(0)' },
+  { label: 'Terms and Conditions', href: 'javascript:void(0)' },
+  { label: 'Privacy Policy', href: '/policy/return' },
+  { label: 'Return Policy', href: '/policy/warranty' },
+  { label: 'Delivery & Return', href: '/policy/shipping' },
+  { label: 'Sitemap', href: '/us' },
 ];
 
 interface Iicon {
@@ -101,7 +101,7 @@ const Footer = () => {
             onClick={handlerOpenIC}
           >
             <h4 className='mb-[10px] py-[10px] font-medium'>
-              Thông tin công ty
+              Information Company
             </h4>
             <span className='block sm:hidden'>
               {!openIC ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
@@ -123,9 +123,7 @@ const Footer = () => {
             className='flex w-full items-center justify-between sm:block'
             onClick={handlerOpenMFR}
           >
-            <h4 className='mb-[10px] py-[10px] font-medium'>
-              Nhiều hơn từ Rubix
-            </h4>
+            <h4 className='mb-[10px] py-[10px] font-medium'>More From Rubix</h4>
             <span className='block sm:hidden'>
               {!openMFR ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
             </span>
@@ -143,7 +141,7 @@ const Footer = () => {
         </div>
         <div>
           <div>
-            <h4 className='mb-[10px] py-[10px] font-medium'>Hãy nói chuyện</h4>
+            <h4 className='mb-[10px] py-[10px] font-medium'>Let's Talk</h4>
             <div className='flex items-start gap-3 text-[#999]'>
               <div>
                 <HeadphonesIcon />
@@ -155,7 +153,7 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <h4 className='mb-[10px] py-[10px] font-medium'>Tìm chúng tôi</h4>
+            <h4 className='mb-[10px] py-[10px] font-medium'>Find Us</h4>
             <div className='flex items-start gap-3 text-[#999]'>
               <div>
                 <LocationOnIcon />
@@ -173,7 +171,7 @@ const Footer = () => {
           <Link href='/'>
             <b className='text-white'>© 2023 Rubix.</b>
           </Link>{' '}
-          Mọi quyền được bảo lưu
+          All Rights Reserved
         </div>
         <div className='hidden md:block'>
           <NextImage

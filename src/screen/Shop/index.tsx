@@ -135,7 +135,7 @@ const Collections: WithLayout = () => {
 
   return (
     <div className='flex w-full flex-col items-center justify-center'>
-      <BgBanner nav='Sản phẩm' />
+      <BgBanner nav='Products' />
       <div className='my-20 grid w-full max-w-[90%] grid-cols-5 gap-6 2xl:max-w-[80%]'>
         <div className='hidden w-full lg:block'>
           <FilterCategories categories={categories} handleSort={handleSort} />
@@ -147,7 +147,7 @@ const Collections: WithLayout = () => {
             setMaxPrice={setMaxPrice}
           />
           <div>
-            <h4 className='mt-12 mb-8'>Bán chạy nhất</h4>
+            <h4 className='mt-12 mb-8'>Best Sellers</h4>
             <div className='flex flex-col gap-6'>
               {product.slice(0, 4).map((item) => (
                 <BestSeller key={item.id} item={item} />
@@ -221,9 +221,9 @@ const Collections: WithLayout = () => {
               </ButtonPage>
             </div>
             <span>
-              Hiển thị {prevPage ? page * take - 11 : 1}-
-              {nextPage ? take * page : itemCount} của {itemCount}
-              &nbsp;Kết quả
+              Showing {prevPage ? page * take - 11 : 1}-
+              {nextPage ? take * page : itemCount} of {itemCount}
+              &nbsp;Results
             </span>
           </div>
         </div>

@@ -14,6 +14,7 @@ import Skeleton from '@/components/Skeleton';
 
 import { CmsApi } from '@/api/cms-api';
 import { useAppDispatch } from '@/app/hooks';
+import { ROUTES } from '@/constant';
 import { fetchTotal } from '@/features/cart/cartSlice';
 import ButtonCart from '@/screen/Cart/ButtonCart';
 import CommentDetail from '@/screen/ProductDetail/CommentDetail';
@@ -40,13 +41,13 @@ const ProductDetail: WithLayout = () => {
     try {
       const _ = await CmsApi.addToCart(items);
       dispatch(fetchTotal());
-      toast.success('Thêm vào giỏ hàng thành công');
+      toast.success('Add to cart successfully');
     } catch (error) {
       if (error.response.status === 401) {
-        toast.error('Vui lòng đăng nhập');
-        router.push('/login');
+        toast.error('Please login to continue');
+        router.push(ROUTES.LOGIN);
       } else {
-        toast.error('Thêm vào giỏ hàng thất bại');
+        toast.error('Error adding to cart');
       }
     }
   };
@@ -75,12 +76,6 @@ const ProductDetail: WithLayout = () => {
             <div className='flex flex-1 flex-col gap-6 font-sans'>
               <div className='flex flex-col gap-4'>
                 <div className='flex items-center gap-2'>
-                  <NextImage
-                    width={30}
-                    height={30}
-                    src='/svg/Mall.svg'
-                    alt='Products'
-                  />
                   <span className='md:text-lg lg:text-2xl'>
                     {item?.name || ''}
                   </span>
@@ -91,33 +86,33 @@ const ProductDetail: WithLayout = () => {
                       item.price ? 'mt-2 line-through' : null
                     } text-base font-light text-gray-700`}
                   >
-                    ₫{item.cost}
+                    ₫{item.cost}.00
                   </span>
                   {item.price && (
                     <span className='mt-2 text-3xl font-light text-red-700'>
-                      ₫{item.price}
+                      ${item.price}.00
                     </span>
                   )}
                   {item.price < item.cost && (
-                    <span className='mt-2 bg-red-500 text-xs font-bold text-white'>
+                    <span className='mt-2 bg-red-500 p-1 text-xs font-bold text-white'>
                       {(((item.cost - item.price) / item.cost) * 100).toFixed(
                         2
                       )}
-                      % giảm
+                      % SALE
                     </span>
                   )}
                 </div>
               </div>
               <div className='flex flex-col gap-2'>
                 <span className='font-medium md:text-base lg:text-xl'>
-                  Mô tả:
+                  Description:
                 </span>
                 <span className='md:text-sm lg:text-xl'>
                   {item?.description || ''}
                 </span>
               </div>
               <div className='flex gap-4'>
-                <span className='mt-2'>Số lượng</span>
+                <span className='mt-2'>Quantity</span>
                 <div className='flex justify-between'>
                   <span>
                     <ButtonCart
@@ -146,7 +141,7 @@ const ProductDetail: WithLayout = () => {
                     handleAddToCart({ itemId: item.id, quantity: quantityItem })
                   }
                 >
-                  Thêm vào giỏ hàng
+                  Add to cart
                 </Button>
               </div>
             </div>

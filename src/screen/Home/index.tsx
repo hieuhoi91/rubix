@@ -35,20 +35,20 @@ const services: IService[] = [
     icon: (
       <AirplanemodeActiveOutlinedIcon style={{ width: '2em', height: '2em' }} />
     ),
-    title: 'Miễn phí vận chuyển toàn cầu',
-    content: 'Cho tất cả đơn hàng trên $75.00',
+    title: 'Free Worldwide Shipping',
+    content: 'On all orders over $75.00',
   },
   {
     icon: <PaymentOutlinedIcon style={{ width: '2em', height: '2em' }} />,
-    title: 'Thanh toán 100% an toàn',
-    content: 'Chúng tôi đảm bảo thanh toán an toàn với PEV',
+    title: '100% Payment Secure',
+    content: 'We ensure secure payment with PEV',
   },
   {
     icon: (
       <KeyboardReturnOutlinedIcon style={{ width: '2em', height: '2em' }} />
     ),
-    title: '30 ngày đổi trả',
-    content: 'Đổi trả trong vòng 20 ngày',
+    title: '30 Days Return',
+    content: 'Return it within 20 day for an exchange',
   },
 ];
 
@@ -61,7 +61,7 @@ const Home: NextPage & WithLayout = () => {
         const res = await CmsApi.getProducts({ page, take });
         setProduct(res.data.data);
       } catch (error) {
-        toast.error('Lỗi load sản phẩm');
+        toast.error('Error loading product');
       }
     };
     handleSort({ page: 1, take: 12 });
@@ -134,10 +134,7 @@ const Home: NextPage & WithLayout = () => {
           />
         </div>
         <section className='pb-10'>
-          <Title
-            title='Sản phẩm thịnh hành'
-            content='Xem nhiều nhất trong tuần'
-          />
+          <Title title='Trending Products' content='Top view in this week' />
           <div className='grid grid-flow-col gap-6'>
             <div>
               <NextImage
@@ -172,10 +169,7 @@ const Home: NextPage & WithLayout = () => {
           </div>
         </section>
         <section className='hidden pb-16 md:block'>
-          <Title
-            title='Sản phẩm bán chạy nhất'
-            content='Xem nhiều nhất trong tuần'
-          />
+          <Title title='Best Seller Products' content='Top sale in this week' />
           <div className='grid gap-6  md:grid-cols-4 xl:grid-cols-6'>
             {product.map((item) => (
               <ProductItem key={item.id} item={item} />
@@ -185,15 +179,14 @@ const Home: NextPage & WithLayout = () => {
       </div>
       <section className='flex w-full items-center justify-center bg-transparent py-[80px]'>
         <div className=' inline-block w-full max-w-[690px] bg-white py-12 px-10 text-center'>
-          <h3 className='mb-3 pt-6 text-3xl'>Theo dõi bản tin của chúng tôi</h3>
+          <h3 className='mb-3 pt-6 text-3xl'>Subcribe To Our Newsletter</h3>
           <span className='text-gray-700'>
-            Đăng ký nhận bản tin hàng tuần và xây dựng các cửa hàng thương mại
-            điện tử tốt hơn.
+            Sign up for the weekly newsletter and build better ecommerce stores.
           </span>
           <form className='my-8 flex w-full justify-between gap-4'>
             <Input
               type='text'
-              placeholder='Địa chỉ email của bạn...'
+              placeholder='Your email address...'
               className='w-full rounded-md border-gray-300 px-4 focus:border-gray-300'
             />
             <button
@@ -204,8 +197,7 @@ const Home: NextPage & WithLayout = () => {
             </button>
           </form>
           <span className='text-gray-700'>
-            Chúng tôi tôn trọng quyền riêng tư của bạn, vì vậy chúng tôi không
-            bao giờ chia sẻ thông tin của bạn.
+            We respect your privacy, so we never share your info.
           </span>
         </div>
       </section>
@@ -221,7 +213,7 @@ const Home: NextPage & WithLayout = () => {
                 <h4 className='font-semibold'>{service.title}</h4>
                 <p>{service.content}</p>
                 <Link href='/' className='mt-2'>
-                  <span className='font-bold'>Đọc thêm</span>
+                  <span className='font-bold'>Learn more</span>
                   <span>
                     <KeyboardArrowRightOutlinedIcon />
                   </span>
@@ -256,10 +248,7 @@ const Home: NextPage & WithLayout = () => {
           </div>
         </section>
         <section className='px-10 pt-10 pb-20'>
-          <Title
-            title='Theo dõi chúng tôi trên Instagram'
-            content='@ Rubix Instagram'
-          />
+          <Title title='Follow us on Instagram' content='@ Rubix Instagram' />
           <div className='grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6'>
             {photoSamples.map((item) => (
               <NextImage

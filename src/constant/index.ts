@@ -9,4 +9,5 @@ export const ROUTES = {
   CART: '/cart',
   BLOG: '/blogs',
   ORDER: '/order',
+  SHOP: '/collections/all',
 };

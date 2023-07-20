@@ -54,13 +54,13 @@ const FilterPrice: React.FC<ProductCategoriesProps> = ({
       <ul className='flex w-full flex-col gap-4'>
         <li className='flex w-full cursor-pointer items-center gap-4'>
           <TextField
-            label='₫ TỪ'
+            label='$ FROM'
             type='number'
             value={minPrice}
             onChange={(e) => setMinPrice(Number(e.target.value))}
           />
           <TextField
-            label='₫ ĐẾN'
+            label='$ TO'
             type='number'
             value={maxPrice}
             onChange={(e) => setMaxPrice(Number(e.target.value))}
@@ -80,7 +80,7 @@ const FilterPrice: React.FC<ProductCategoriesProps> = ({
               } as ReqSearchProduct)
             }
           >
-            Lọc
+            SEARCH
           </Button>
         </li>
       </ul>

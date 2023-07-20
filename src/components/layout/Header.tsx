@@ -27,11 +27,11 @@ import { login, register } from '@/features/auth/authSlice';
 import { fetchTotal } from '@/features/cart/cartSlice';
 
 const links = [
-  { href: '/', label: 'Trang chủ' },
-  { href: '/collections/all', label: 'Cửa hàng' },
-  { href: '/collections', label: 'Bộ sưu tập' },
-  { href: '/blogs', label: 'Bài viết' },
-  { href: '/us', label: 'Liên hệ' },
+  { href: '/', label: 'Home' },
+  { href: '/collections/all', label: 'Shop' },
+  { href: '/collections', label: 'Collections' },
+  { href: '/blogs', label: 'Blog' },
+  { href: '/us', label: 'Contact Us' },
 ];
 
 export default function Header() {
@@ -169,7 +169,7 @@ export default function Header() {
                     router.push(ROUTES.ORDER);
                   }}
                 >
-                  Đơn đã mua
+                  PU Order
                 </Button>
               </div>
               <div className='flex flex-col items-center justify-center gap-2 p-4'>
@@ -178,7 +178,7 @@ export default function Header() {
                   size='small'
                   onClick={() => signOut()}
                 >
-                  Đăng xuất
+                  Log Out
                 </Button>
               </div>
             </Popover>
@@ -188,13 +188,13 @@ export default function Header() {
           <ul className='flex min-w-[170px] items-center justify-center'>
             <li className='pr-1 hover:text-yellow-300 xl:block'>
               <Link onClick={() => dispatch(login())} href='/login'>
-                Đăng nhập
+                Login
               </Link>
             </li>
             <li className=' xl:block'>/</li>
             <li className=' pl-1 pr-6 hover:text-yellow-300 xl:block'>
               <Link onClick={() => dispatch(register())} href='/signup'>
-                Đăng ký
+                Register
               </Link>
             </li>
           </ul>
@@ -209,7 +209,7 @@ export default function Header() {
         {session && (
           <Link href='/cart'>
             <Badge
-              title='Giỏ hàng'
+              title='Cart'
               className='relative cursor-pointer pl-2'
               badgeContent={total}
             >

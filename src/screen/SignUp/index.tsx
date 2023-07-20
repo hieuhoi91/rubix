@@ -44,11 +44,11 @@ const Register: NextPage & WithLayout = () => {
     },
 
     validationSchema: Yup.object().shape({
-      username: Yup.string().required('Bạn phải nhập tên đăng nhập.'),
+      username: Yup.string().required('You must enter your username.'),
       email: Yup.string()
-        .email('Email không hợp lệ.')
-        .required('Bạn phải nhập email.'),
-      password: Yup.string().required('Bạn phải nhập mật khẩu'),
+        .email('Email not valid.')
+        .required('You must enter your email.'),
+      password: Yup.string().required('You must enter your password.'),
     }),
   });
   return (
@@ -60,7 +60,7 @@ const Register: NextPage & WithLayout = () => {
         id='username'
         name='username'
         type='username'
-        placeholder='Tên đăng nhập'
+        placeholder='Username'
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.username}
@@ -83,7 +83,7 @@ const Register: NextPage & WithLayout = () => {
       <Input
         id='password'
         name='password'
-        placeholder='Mật khẩu'
+        placeholder='Password'
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.password}
@@ -98,7 +98,7 @@ const Register: NextPage & WithLayout = () => {
         type='submit'
         large
         className=' rounded-lg bg-[#1a1a1a] text-sm text-white transition-all hover:bg-amber-400 hover:shadow-lg'
-        title={`${isLoading ? 'Đang tải...' : 'Đăng ký'}`}
+        title={`${isLoading ? 'Loading...' : 'Sign Up'}`}
       />
     </form>
   );

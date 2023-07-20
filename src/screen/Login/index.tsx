@@ -60,8 +60,8 @@ const Login: NextPage & WithLayout = () => {
 
     validationSchema: Yup.object().shape({
       email: Yup.string()
-        .email('Email không hợp lệ.')
-        .required('Bạn phải nhập email.'),
+        .email('Email not valid.')
+        .required('You must enter your email.'),
       password: Yup.string().required('You must enter your password.'),
     }),
   });
@@ -103,7 +103,7 @@ const Login: NextPage & WithLayout = () => {
             onClick={toggleAuthLogin}
           >
             <Link href='/login' className='text-xs hover:text-amber-400'>
-              Quên mật khẩu ?
+              Forgot password ?
             </Link>
           </span>
 
@@ -112,14 +112,14 @@ const Login: NextPage & WithLayout = () => {
             type='submit'
             large
             className='rounded-lg bg-[#1a1a1a] text-sm text-white transition-all hover:bg-amber-400 hover:shadow-lg'
-            title={`${isLoading ? 'Đang tải...' : 'Đăng nhập'}`}
+            title={`${isLoading ? 'Loading...' : 'Login'}`}
           />
         </form>
       ) : (
         <div className='flex flex-col items-center justify-center'>
-          <h4 className='p-2'>Khôi phục mật khẩu</h4>
+          <h4 className='p-2'>Reset your password</h4>
           <span className='pb-4'>
-            Chúng tôi sẽ gửi email cho bạn để khôi phục mật khẩu.
+            We will send you an email to reset your password.
           </span>
           <form
             onSubmit={formik.handleSubmit}
@@ -150,7 +150,7 @@ const Login: NextPage & WithLayout = () => {
               type='submit'
               large
               className='my-4 rounded-lg border border-stone-900 bg-transparent text-sm text-black transition-buttonLogin hover:border-amber-400 hover:text-amber-400 hover:shadow-lg'
-              title='Quay lại đăng nhập'
+              title='Back to login'
             />
           </form>
         </div>

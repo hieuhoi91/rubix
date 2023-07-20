@@ -153,74 +153,69 @@ export const PaymentCart: React.FC<Props> = ({ typePayment }) => {
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <div className='flex items-center justify-center bg-blue-300 p-2'>
             <div className='flex h-auto flex-col gap-2 rounded-lg bg-white p-3'>
-              <p className='text-xl font-semibold'>Chi tiết thanh toán</p>
+              <p className='text-xl font-semibold'>Payment details</p>
               <div className='input_text relative mt-6'>
-                {' '}
                 <RHFTextField
                   name='userNameCard'
                   type='text'
                   className='h-12 w-full border-b px-2 pl-7 outline-none transition-all focus:border-blue-900 '
                   placeholder='Tên'
-                />{' '}
+                />
                 <span className='absolute left-0 -top-5 text-sm'>
-                  Tên chủ thẻ
-                </span>{' '}
-                <i className='fa fa-user absolute left-2 top-4 text-gray-400'></i>{' '}
+                  Account name
+                </span>
+                <i className='fa fa-user absolute left-2 top-4 text-gray-400'></i>
               </div>
               <div className='input_text relative mt-8'>
-                {' '}
                 <RHFTextField
                   name='numberCard'
                   type='text'
                   className='h-12 w-full border-b px-2 pl-7 outline-none transition-all focus:border-blue-900 '
                   placeholder='0000 0000 0000 0000'
-                />{' '}
-                <span className='absolute left-0 -top-5 text-sm'>Số thẻ</span>{' '}
-                <i className='fa fa-credit-card absolute left-2 top-[14px] text-sm text-gray-400'></i>{' '}
+                />
+                <span className='absolute left-0 -top-5 text-sm'>
+                  Card number
+                </span>
+                <i className='fa fa-credit-card absolute left-2 top-[14px] text-sm text-gray-400'></i>
               </div>
               <div className='mt-8 flex gap-5 '>
                 <div className='input_text relative w-full'>
-                  {' '}
                   <RHFTextField
                     name='dateCard'
                     type='text'
                     className='h-12 w-full border-b px-2 pl-7 outline-none transition-all focus:border-blue-900 '
                     placeholder='mm/yyyy'
-                  />{' '}
-                  <span className='absolute left-0 -top-5 text-sm'>
-                    Hạn sử dụng
-                  </span>{' '}
-                  <i className='fa fa-calendar-o absolute left-2 top-4 text-gray-400'></i>{' '}
+                  />
+                  <span className='absolute left-0 -top-5 text-sm'>Expiry</span>
+                  <i className='fa fa-calendar-o absolute left-2 top-4 text-gray-400'></i>
                 </div>
                 <div className='input_text relative w-full'>
-                  {' '}
                   <RHFTextField
                     name='CVV'
                     type='text'
                     className='h-12 w-full border-b px-2 pl-7 outline-none transition-all focus:border-blue-900 '
                     placeholder='000'
-                  />{' '}
-                  <span className='absolute left-0 -top-4 text-sm'>CVV</span>{' '}
-                  <i className='fa fa-lock absolute left-2 top-4 text-gray-400'></i>{' '}
+                  />
+                  <span className='absolute left-0 -top-4 text-sm'>CVV</span>
+                  <i className='fa fa-lock absolute left-2 top-4 text-gray-400'></i>
                 </div>
               </div>
               {typePayment === 'one' && items[0]?.item ? (
                 <p className='mt-10 text-center text-lg font-semibold text-gray-600'>
-                  Tổng tiền: đ{items[0].item.price * items[0].quantity}
+                  Total amount: ${items[0].item.price * items[0].quantity}.00
                 </p>
               ) : (
                 <p className='mt-10 text-center text-lg font-semibold text-gray-600'>
-                  Tổng tiền: đ{totalItemPayment}
+                  Total amount: ${totalItemPayment}.00
                 </p>
               )}
               <div className='mt-2 flex justify-center'>
-                {' '}
                 <Button
                   className='pay mb-3 h-12 w-1/2 cursor-pointer rounded-lg bg-orange-600 text-white outline-none transition-all hover:bg-orange-700'
                   type='submit'
                 >
-                  Thanh toán
-                </Button>{' '}
+                  Pay
+                </Button>
               </div>
             </div>
           </div>
