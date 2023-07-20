@@ -43,7 +43,7 @@ export default NextAuth({
           type: 'email',
         },
         password: {
-          label: 'Mật khẩu',
+          label: 'Password',
           type: 'password',
         },
       },
@@ -57,6 +57,8 @@ export default NextAuth({
             return res.data; // return the data from the server response (token, user) as a object (token, user) with the type ResLogin
           });
 
+          console.log('data', data.token.expiresIn);
+
           if (data) {
             const { access_token: accessToken, refresh_token: refreshToken } =
               data.token; // We get the access token and the refresh token from the data object.
@@ -68,8 +70,8 @@ export default NextAuth({
             return {
               ...data.user,
               accessToken,
-              // accessTokenExpires: accessTokenExpirationTime,
               refreshToken,
+              expiresIn: '1h',
             };
             // return new object user contain token
           }
@@ -101,8 +103,6 @@ export default NextAuth({
           expires: token.accessTokenExpires as string,
         };
       }
-
-      console.log('session', session);
 
       return session;
     },

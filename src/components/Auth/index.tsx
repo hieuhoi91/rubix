@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 
 interface Props {
@@ -6,9 +6,10 @@ interface Props {
 }
 const Auth = ({ children }: Props) => {
   const { data: session } = useSession();
+  console.log(session);
 
   useEffect(() => {
-    if (!session) return;
+    if (!session) signOut();
   }, [session]);
   return <>{children}</>;
 };

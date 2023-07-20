@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import React from 'react';
 
+import Auth from '@/components/Auth';
 import Layout from '@/components/layout/Layout';
 import Skeleton from '@/components/Skeleton';
 
@@ -99,5 +100,9 @@ const Order: WithLayout = () => {
   );
 };
 
-Order.getLayout = (page) => <Layout>{page}</Layout>;
+Order.getLayout = (page) => (
+  <Layout>
+    <Auth>{page}</Auth>
+  </Layout>
+);
 export default Order;

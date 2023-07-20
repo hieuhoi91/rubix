@@ -126,7 +126,6 @@ export const PaymentCart: React.FC<Props> = ({ typePayment }) => {
     }
     reset();
   };
-  console.log('🚀 ~ totalItemPayment:', totalItemPayment);
 
   const openPayment = useAppSelector(selectOpenPayment);
   const handleClose = () => dispatch(setOpenPayment(false));
