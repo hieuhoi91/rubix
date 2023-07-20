@@ -1,8 +1,8 @@
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import React from 'react';
+import { MdOutlineShoppingBag } from 'react-icons/md';
 
 import Auth from '@/components/Auth';
 import Layout from '@/components/layout/Layout';
@@ -87,7 +87,7 @@ const Order: WithLayout = () => {
         )
       ) : (
         <div className='flex h-[342px] w-full flex-col items-center justify-center gap-6'>
-          <ShoppingBagOutlinedIcon className='h-14 w-14' />
+          <MdOutlineShoppingBag className='h-14 w-14' />
           <span className='text-4xl'>Your order is empty.</span>
           <Link href={ROUTES.CART}>
             <button className='btn-return-shop rounded-lg border border-amber-400 p-2 transition-all hover:bg-amber-400'>

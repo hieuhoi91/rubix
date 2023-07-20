@@ -1,6 +1,6 @@
-import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { MdOutlineLocalMall } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
 import NextImage from '@/components/NextImage';
@@ -58,7 +58,7 @@ const ProductItem = ({ item }: { item: Product }) => {
               onClick={() => handleAddToCart({ itemId: item.id, quantity: 1 })}
               className='flex h-8 w-8 items-center justify-center rounded-md bg-white transition-all hover:bg-amber-400 hover:text-white xl:h-12 xl:w-12'
             >
-              <LocalMallOutlinedIcon />
+              <MdOutlineLocalMall />
             </span>
           </div>
         )}

@@ -1,9 +1,11 @@
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import SearchIcon from '@mui/icons-material/Search';
 import React from 'react';
+import { BiSearch } from 'react-icons/bi';
+import {
+  MdKeyboardArrowDown,
+  MdKeyboardArrowLeft,
+  MdKeyboardArrowRight,
+  MdKeyboardArrowUp,
+} from 'react-icons/md';
 
 import { categories, ourBlog, tags } from '@/data';
 
@@ -38,8 +40,8 @@ const Blogs: WithLayout = () => {
               placeholder='Search our blogs'
               className='h-full w-full rounded pl-4 outline-none'
             />
-            <span className='absolute right-0 top-1/2 flex -translate-y-1/2 cursor-pointer items-center justify-between border-l border-gray-600 px-4 text-gray-600 transition-all hover:text-amber-400'>
-              <SearchIcon />
+            <span className='absolute right-0 top-1/2 flex -translate-y-1/2 cursor-pointer items-center justify-between border-l border-gray-600 px-4 text-2xl text-gray-600 transition-all hover:text-amber-400'>
+              <BiSearch />
             </span>
           </div>
           <div className=' border-t border-b'>
@@ -49,7 +51,7 @@ const Blogs: WithLayout = () => {
             >
               <h4 className='my-8'>Recent Articles</h4>
               <span className='block xl:hidden'>
-                {!openRA ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+                {!openRA ? <MdKeyboardArrowDown /> : <MdKeyboardArrowUp />}
               </span>
             </div>
             <div className={!openTags ? 'hidden xl:block' : 'block'}></div>
@@ -62,9 +64,9 @@ const Blogs: WithLayout = () => {
               <h4 className='my-8'>Categories</h4>
               <span className='block xl:hidden'>
                 {!openCategories ? (
-                  <KeyboardArrowDownIcon />
+                  <MdKeyboardArrowDown />
                 ) : (
-                  <KeyboardArrowUpIcon />
+                  <MdKeyboardArrowUp />
                 )}
               </span>
             </div>
@@ -88,11 +90,7 @@ const Blogs: WithLayout = () => {
             >
               <h4 className='my-8'>Articles Tags</h4>
               <span className='block xl:hidden'>
-                {!openTags ? (
-                  <KeyboardArrowDownIcon />
-                ) : (
-                  <KeyboardArrowUpIcon />
-                )}
+                {!openTags ? <MdKeyboardArrowDown /> : <MdKeyboardArrowUp />}
               </span>
             </div>
             <div className={!openTags ? 'hidden xl:block' : 'block'}>
@@ -125,12 +123,12 @@ const Blogs: WithLayout = () => {
           <div className='flex items-center justify-between pt-16 text-gray-700'>
             <div className='flex gap-2'>
               <ButtonPage>
-                <KeyboardDoubleArrowLeftIcon />
+                <MdKeyboardArrowLeft />
               </ButtonPage>
               <ButtonPage title='1' />
               <ButtonPage title='2' />
               <ButtonPage>
-                <KeyboardDoubleArrowRightIcon />
+                <MdKeyboardArrowRight />
               </ButtonPage>
             </div>
             <span>Showing 1-12 of 17 Results</span>

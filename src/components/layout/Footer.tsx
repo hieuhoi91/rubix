@@ -1,14 +1,18 @@
-import FacebookIcon from '@mui/icons-material/Facebook';
-import HeadphonesIcon from '@mui/icons-material/Headphones';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import PinterestIcon from '@mui/icons-material/Pinterest';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import YouTubeIcon from '@mui/icons-material/YouTube';
 import Link from 'next/link';
 import React from 'react';
+import {
+  BiLogoFacebookSquare,
+  BiLogoInstagram,
+  BiLogoPinterest,
+  BiLogoTwitter,
+  BiLogoYoutube,
+} from 'react-icons/bi';
+import { BsHeadphones } from 'react-icons/bs';
+import {
+  MdKeyboardArrowDown,
+  MdKeyboardArrowUp,
+  MdLocationOn,
+} from 'react-icons/md';
 
 import NextImage from '@/components/NextImage';
 
@@ -40,23 +44,23 @@ interface Iicon {
 const icon: Iicon[] = [
   {
     href: 'https://www.facebook.com/tranngocthanh.tran.10',
-    icon: <FacebookIcon />,
+    icon: <BiLogoFacebookSquare />,
   },
   {
     href: 'https://www.facebook.com/tranngocthanh.tran.10',
-    icon: <TwitterIcon />,
+    icon: <BiLogoTwitter />,
   },
   {
     href: 'https://www.facebook.com/tranngocthanh.tran.10',
-    icon: <InstagramIcon />,
+    icon: <BiLogoInstagram />,
   },
   {
     href: 'https://www.facebook.com/tranngocthanh.tran.10',
-    icon: <PinterestIcon />,
+    icon: <BiLogoPinterest />,
   },
   {
     href: 'https://www.facebook.com/tranngocthanh.tran.10',
-    icon: <YouTubeIcon />,
+    icon: <BiLogoYoutube />,
   },
 ];
 
@@ -88,7 +92,7 @@ const Footer = () => {
               <a
                 href={item.href}
                 key={idx}
-                className='cursor-pointer transition-all hover:text-amber-400'
+                className='cursor-pointer text-2xl transition-all hover:text-amber-400'
               >
                 {item.icon}
               </a>
@@ -104,7 +108,7 @@ const Footer = () => {
               Information Company
             </h4>
             <span className='block sm:hidden'>
-              {!openIC ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+              {!openIC ? <MdKeyboardArrowDown /> : <MdKeyboardArrowUp />}
             </span>
           </div>
           <ul className={!openIC ? 'hidden sm:block' : 'block'}>
@@ -125,7 +129,7 @@ const Footer = () => {
           >
             <h4 className='mb-[10px] py-[10px] font-medium'>More From Rubix</h4>
             <span className='block sm:hidden'>
-              {!openMFR ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+              {!openMFR ? <MdKeyboardArrowDown /> : <MdKeyboardArrowUp />}
             </span>
           </div>
           <ul className={!openMFR ? 'hidden sm:block' : 'block'}>
@@ -143,9 +147,9 @@ const Footer = () => {
           <div>
             <h4 className='mb-[10px] py-[10px] font-medium'>Let's Talk</h4>
             <div className='flex items-start gap-3 text-[#999]'>
-              <div>
-                <HeadphonesIcon />
-              </div>
+              <span className='text-2xl'>
+                <BsHeadphones />
+              </span>
               <div className='cursor-text'>
                 +391 (0)35 2568 4593 <br />
                 <u>hello@domain.com</u>
@@ -155,9 +159,9 @@ const Footer = () => {
           <div>
             <h4 className='mb-[10px] py-[10px] font-medium'>Find Us</h4>
             <div className='flex items-start gap-3 text-[#999]'>
-              <div>
-                <LocationOnIcon />
-              </div>
+              <span className='text-2xl'>
+                <MdLocationOn />
+              </span>
               <div className='cursor-text'>
                 +391 (0)35 2568 4593 <br />
                 <u>hello@domain.com</u>

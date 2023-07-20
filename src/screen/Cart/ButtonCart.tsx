@@ -14,7 +14,7 @@ const ButtonCart: FC<IButtonCart> = (props) => {
 
   return (
     <button
-      className={`${className} h-10 w-10 bg-[#f7f7f7]`}
+      className={`${className} flex h-10 w-10 items-center justify-center border bg-[#f7f7f7]`}
       {...parentAttributes}
     >
       {title}

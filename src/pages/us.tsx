@@ -2,7 +2,7 @@ import { Contact } from '@/screen';
 
 export default Contact;
 
-export const getServerSideProps = () => {
+export const getStaticProps = () => {
   return {
     props: {},
   };

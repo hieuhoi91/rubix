@@ -1,6 +1,5 @@
-import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { FC, useState } from 'react';
+import { MdOutlineVisibility, MdOutlineVisibilityOff } from 'react-icons/md';
 
 interface IInput
   extends React.DetailedHTMLProps<
@@ -33,15 +32,19 @@ const Input: FC<IInput> = (props) => {
       />
       {eyeEnable ? (
         !isHidden ? (
-          <VisibilityOutlinedIcon
-            className='absolute right-2 cursor-pointer text-gray-400'
+          <span
+            className='absolute right-4 cursor-pointer text-2xl text-gray-400'
             onClick={HiddenPassword}
-          />
+          >
+            <MdOutlineVisibility />
+          </span>
         ) : (
-          <VisibilityOffOutlinedIcon
-            className='absolute right-2 cursor-pointer text-gray-400'
+          <span
+            className='absolute right-4 cursor-pointer text-2xl text-gray-400'
             onClick={HiddenPassword}
-          />
+          >
+            <MdOutlineVisibilityOff />
+          </span>
         )
       ) : null}
     </div>

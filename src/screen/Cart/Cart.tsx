@@ -1,9 +1,7 @@
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import { MdAdd, MdOutlineShoppingBag, MdRemove } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
 import Auth from '@/components/Auth';
@@ -151,7 +149,7 @@ const Cart: WithLayout = () => {
                             })
                           }
                         >
-                          <RemoveIcon />
+                          <MdRemove />
                         </ButtonCart>
                         <ButtonCart title={String(item.quantity)} />
                         <ButtonCart
@@ -162,7 +160,7 @@ const Cart: WithLayout = () => {
                             })
                           }
                         >
-                          <AddIcon />
+                          <MdAdd />
                         </ButtonCart>
                       </span>
                     </div>
@@ -190,7 +188,7 @@ const Cart: WithLayout = () => {
         </div>
       ) : (
         <div className='flex h-[354px] w-full flex-col items-center justify-center gap-6'>
-          <ShoppingBagOutlinedIcon className='h-14 w-14' />
+          <MdOutlineShoppingBag className='h-14 w-14' />
           <span className='text-4xl'>Your cart is empty.</span>
           <Link href={ROUTES.SHOP}>
             <button className='btn-return-shop rounded-lg border border-amber-400 p-2 transition-all hover:bg-amber-400'>

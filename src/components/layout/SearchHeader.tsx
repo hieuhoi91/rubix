@@ -1,6 +1,4 @@
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import SendIcon from '@mui/icons-material/Send';
-import { Button, IconButton, Input, Popover } from '@mui/material';
+import { Input, Popover } from '@mantine/core';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -31,21 +29,17 @@ const SearchHeader = () => {
 
   return (
     <div>
-      <IconButton onClick={handleClick} id={id}>
-        <SearchOutlinedIcon />
-      </IconButton>
+      {/* <ActionIcon onClick={handleClick} id={id}>
+        <BiSearch />
+      </ActionIcon> */}
       <Popover
         id={id}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setSearchPro(e.target.value)
-        }
-        open={open}
-        anchorEl={anchorEl}
+        // onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        //   setSearchPro(e.target.value)
+        // }
+        opened={open}
+        // anchorEl={anchorEl}
         onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
       >
         <Input
           id='input-with-icon-adornment'
@@ -55,15 +49,13 @@ const SearchHeader = () => {
           sx={{
             padding: '0 0.5rem',
           }}
-          endAdornment={
-            <Button aria-label='search' onClick={handleClose}>
-              <SendIcon />
-            </Button>
-          }
           onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) =>
             e.key === 'Enter' && handleClose()
           }
         />
+        {/* <Button aria-label='search' onClick={handleClose}>
+          <IoSend />
+        </Button> */}
       </Popover>
     </div>
   );

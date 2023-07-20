@@ -1,8 +1,6 @@
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import StoreIcon from '@mui/icons-material/Store';
-import { Divider, Popover, Typography } from '@mui/material';
+import { Divider, Popover, Text } from '@mantine/core';
 import React from 'react';
+import { MdLocalShipping, MdQuestionAnswer, MdStore } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
 import { CmsApi } from '@/api/cms-api';
@@ -46,7 +44,7 @@ export const OrderDetails = ({ orders }: OrderDetailProps) => {
       <div className=' flex justify-between gap-1'>
         <div className='flex flex-col'>
           <div className='flex items-center'>
-            <StoreIcon />
+            <MdStore />
             <span className='font-bold'>Shop Rubix</span>
           </div>
           <div className='flex'>
@@ -69,7 +67,7 @@ export const OrderDetails = ({ orders }: OrderDetailProps) => {
                 <span className='mr-3 h-8 w-11 cursor-pointer border bg-red-500 p-1 text-white'>
                   Cancel
                 </span>
-                <LocalShippingIcon />
+                <MdLocalShipping />
                 {OrderStatus[orders.status]}
               </div>
             </div>
@@ -79,7 +77,7 @@ export const OrderDetails = ({ orders }: OrderDetailProps) => {
               Cancelled
             </span>
           )}
-          <QuestionMarkIcon className='mt-[3px] h-5 w-5 cursor-pointer rounded-xl border border-dark text-black' />
+          <MdQuestionAnswer className='mt-[3px] h-5 w-5 cursor-pointer rounded-xl border border-dark text-black' />
           <div
             aria-owns={open ? 'mouse-over-popover' : undefined}
             aria-haspopup='true'
@@ -88,27 +86,16 @@ export const OrderDetails = ({ orders }: OrderDetailProps) => {
           >
             <Popover
               id='mouse-over-popover'
-              sx={{
-                pointerEvents: 'none',
-              }}
-              open={open}
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
+              opened={open}
+              // anchorEl={anchorEl}
+
               onClose={handlePopoverClose}
-              disableRestoreFocus
             >
-              <Typography sx={{ p: 1 }}>Latest updates</Typography>
-              <Typography sx={{ p: 1 }}>
+              <Text sx={{ p: 1 }}>Latest updates</Text>
+              <Text sx={{ p: 1 }}>
                 {formatTime(orders.updated_at).time1.split('.')[0]}&nbsp;
                 {formatTime(orders.created_at).date}
-              </Typography>
+              </Text>
             </Popover>
           </div>
         </div>
@@ -119,7 +106,6 @@ export const OrderDetails = ({ orders }: OrderDetailProps) => {
             color: 'yellow',
           }}
           orientation='horizontal'
-          flexItem
         />
       </div>
       {orders.orderItems.map((item) => (

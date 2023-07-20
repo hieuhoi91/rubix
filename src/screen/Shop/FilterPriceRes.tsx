@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material';
+import { Button, Input } from '@mantine/core';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -36,20 +36,22 @@ const FilterPriceRes: React.FC<ProductCategoriesProps> = ({
     <div className='mt-12 border-b pb-10 lg:hidden'>
       <ul className='flex w-full gap-4'>
         <li className='flex w-56 cursor-pointer items-center gap-4'>
-          <TextField
-            sx={{ height: '100%' }}
-            label='₫ TỪ'
-            type='number'
-            value={minPrice}
-            onChange={(e) => setMinPrice(Number(e.target.value))}
-          />
-          <TextField
-            sx={{ height: '100%' }}
-            label='₫ ĐẾN'
-            type='number'
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(Number(e.target.value))}
-          />
+          <Input.Wrapper label='$ FROM'>
+            <Input
+              sx={{ height: '100%' }}
+              type='number'
+              value={minPrice}
+              onChange={(e) => setMinPrice(Number(e.target.value))}
+            />
+          </Input.Wrapper>
+          <Input.Wrapper label='$ TO'>
+            <Input
+              sx={{ height: '100%' }}
+              type='number'
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(Number(e.target.value))}
+            />
+          </Input.Wrapper>
         </li>
         <li className='h-14 w-10'>
           <Button

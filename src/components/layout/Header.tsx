@@ -1,28 +1,15 @@
-import { Logout } from '@mui/icons-material';
-import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
-import MenuIcon from '@mui/icons-material/Menu';
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
-import {
-  Badge,
-  Button,
-  Drawer,
-  IconButton,
-  MenuItem,
-  MenuList,
-  Popover,
-} from '@mui/material';
-import Image from 'next/image';
+import { ActionIcon, Indicator } from '@mantine/core';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import React from 'react';
-import { RiCloseCircleFill } from 'react-icons/ri';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { MdOutlineLocalMall, MdPersonOutline } from 'react-icons/md';
 
 import SearchHeader from '@/components/layout/SearchHeader';
 import NextImage from '@/components/NextImage';
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
-import { ROUTES } from '@/constant';
 import { login, register } from '@/features/auth/authSlice';
 import { fetchTotal } from '@/features/cart/cartSlice';
 
@@ -80,10 +67,10 @@ export default function Header() {
   return (
     <header className='sticky top-0 z-40 flex h-24 w-full min-w-[90%] items-center justify-around bg-white  py-5 font-normal sm:px-sm lg:justify-between xl:px-xl'>
       <div className='flex gap-4 lg:hidden'>
-        <IconButton onClick={handleDrawerOpen}>
-          <MenuIcon className='cursor-pointer' />
-        </IconButton>
-        <SearchHeader />
+        <ActionIcon onClick={handleDrawerOpen} className='text-2xl'>
+          <AiOutlineMenu className='cursor-pointer' />
+        </ActionIcon>
+        {/* <SearchHeader /> */}
       </div>
       <Link href='/'>
         <NextImage
@@ -93,27 +80,27 @@ export default function Header() {
           alt='Ribix'
         />
       </Link>
-      <MenuList className=' hidden min-w-[600px] items-center justify-evenly gap-10 lg:flex'>
+      <div className='hidden min-w-[600px] items-center justify-evenly gap-10 lg:flex'>
         {links.map(({ href, label }) => (
-          <li key={`${href}${label}`}>
+          <li className='list-none' key={`${href}${label}`}>
             <Link href={href} className=' flex hover:text-yellow-300'>
               <span className='w-full'>{label}</span>
             </Link>
           </li>
         ))}
-      </MenuList>
-      <Drawer
-        anchor='left'
-        open={openDr}
+      </div>
+      {/* <Drawer
+        position='left'
+        opened={openDr}
         onClose={handleDrawerClose}
         className='relative'
       >
-        <IconButton
+        <span
           onClick={handleDrawerClose}
           className='absolute right-1 m-2 cursor-pointer'
         >
           <RiCloseCircleFill />
-        </IconButton>
+        </span>
         <Link href='/'>
           <NextImage
             src='/images/logo_black.png'
@@ -123,9 +110,9 @@ export default function Header() {
             className='mx-auto mt-12'
           />
         </Link>
-        <MenuList className=' m-6 mt-10 min-w-[300px] flex-col items-center justify-center gap-10'>
+        <Menu shadow='md' width={200}>
           {links.map(({ href, label }) => (
-            <MenuItem
+            <Menu.Item
               key={`${href}${label}`}
               onClick={() => handleNavigate(href)}
               className='flex p-3 hover:text-yellow-300'
@@ -133,55 +120,45 @@ export default function Header() {
               <Link href={href}>
                 <span className='w-full'>{label}</span>
               </Link>
-            </MenuItem>
+            </Menu.Item>
           ))}
-        </MenuList>
-      </Drawer>
+        </Menu>
+      </Drawer> */}
       <div className='relative flex items-center justify-end'>
         {session && (
           <div className='hover:text-yellow-300'>
-            <IconButton onClick={handlePopoverOpen}>
-              <PersonOutlinedIcon />
-            </IconButton>
-            <Popover
-              open={open}
-              anchorEl={anchorEl}
+            <ActionIcon onClick={handlePopoverOpen} className='text-2xl'>
+              <MdPersonOutline />
+            </ActionIcon>
+            {/* <Popover
+              opened={open}
+              // anchorEl={anchorEl}
               onClose={handlePopoverClose}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
             >
               <div className='flex flex-col items-center justify-center gap-2 p-4'>
                 <Button
-                  startIcon={
-                    <Image
-                      src='/svg/order.svg'
-                      width={20}
-                      height={20}
-                      alt='avatar'
-                      className='fill-[#1976d2]'
-                    />
-                  }
                   size='small'
                   onClick={() => {
                     handlePopoverClose();
                     router.push(ROUTES.ORDER);
                   }}
                 >
+                  <Image
+                    src='/svg/order.svg'
+                    width={20}
+                    height={20}
+                    alt='avatar'
+                    className='fill-[#1976d2]'
+                  />
                   Order
                 </Button>
               </div>
               <div className='flex flex-col items-center justify-center gap-2 p-4'>
-                <Button
-                  startIcon={<Logout />}
-                  size='small'
-                  onClick={() => signOut()}
-                >
-                  Log Out
+                <Button size='small' onClick={() => signOut()}>
+                  <MdOutlineLogout /> Log Out
                 </Button>
               </div>
-            </Popover>
+            </Popover> */}
           </div>
         )}
         {!session ? (
@@ -208,15 +185,15 @@ export default function Header() {
         )}
         {session && (
           <Link href='/cart'>
-            <Badge
+            <Indicator
               title='Cart'
               className='relative cursor-pointer pl-2'
-              badgeContent={total}
+              label={total}
             >
-              <IconButton>
-                <LocalMallOutlinedIcon />
-              </IconButton>
-            </Badge>
+              <span>
+                <MdOutlineLocalMall />
+              </span>
+            </Indicator>
           </Link>
         )}
       </div>

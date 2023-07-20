@@ -1,7 +1,7 @@
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { Button, TextField } from '@mui/material';
+import { Button, Input } from '@mantine/core';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { MdHighlightOff } from 'react-icons/md';
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import {
@@ -15,9 +15,9 @@ type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
 interface ProductCategoriesProps {
   handleFilter: (params: ReqSearchProduct) => Promise<void>;
-  minPrice: number;
+  minPrice: number | null;
   setMinPrice: SetState<number>;
-  maxPrice: number;
+  maxPrice: number | null;
   setMaxPrice: SetState<number>;
 }
 
@@ -41,35 +41,37 @@ const FilterPrice: React.FC<ProductCategoriesProps> = ({
   return (
     <div className='mt-12 w-full border-b pb-10'>
       <div className='flex h-full w-full justify-between'>
-        <h4 className='mb-6'>Giá</h4>
+        <h4 className='mb-6'>Price</h4>
         {getSubPriceChoose === '' ? null : (
           <span
             className='cursor-pointer text-amber-400'
             onClick={() => dispatch(setSubPriceChoose(''))}
           >
-            <HighlightOffIcon />
+            <MdHighlightOff />
           </span>
         )}
       </div>
       <ul className='flex w-full flex-col gap-4'>
         <li className='flex w-full cursor-pointer items-center gap-4'>
-          <TextField
-            label='$ FROM'
-            type='number'
-            value={minPrice}
-            onChange={(e) => setMinPrice(Number(e.target.value))}
-          />
-          <TextField
-            label='$ TO'
-            type='number'
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(Number(e.target.value))}
-          />
+          <Input.Wrapper label='$ FROM'>
+            <Input
+              type='number'
+              value={minPrice || null}
+              onChange={(e) => setMinPrice(Number(e.target.value))}
+            />
+          </Input.Wrapper>
+          <Input.Wrapper label='$ TO'>
+            <Input
+              type='number'
+              value={maxPrice || null}
+              onChange={(e) => setMaxPrice(Number(e.target.value))}
+            />
+          </Input.Wrapper>
         </li>
         <li className='w-full'>
           <Button
-            variant='outlined'
-            className='w-full'
+            variant='default'
+            className='w-full border-amber-400 transition-all hover:bg-amber-400 hover:text-white'
             onClick={() =>
               handleFilter({
                 page: 1,

@@ -1,4 +1,4 @@
-import { Box, Divider, Modal, Rating, Typography } from '@mui/material';
+import { Box, Divider, Modal, Rating, Text } from '@mantine/core';
 import Image from 'next/image';
 import React from 'react';
 import { toast } from 'react-toastify';
@@ -55,12 +55,12 @@ const PoperFeedbackOrder = ({ item, setIsReviewed }: Props) => {
           Feedback
         </span>
         <Modal
-          open={open}
+          opened={open}
           onClose={handleClose}
           aria-labelledby='modal-modal-title'
           aria-describedby='modal-modal-description'
         >
-          <Box sx={style}>
+          <Box>
             <div>
               <div className='flex items-center justify-between'>
                 <div className='flex gap-2'>
@@ -94,11 +94,11 @@ const PoperFeedbackOrder = ({ item, setIsReviewed }: Props) => {
               <Divider className='my-1' />
             </div>
             <div className='flex w-full flex-col items-center justify-center'>
-              <Typography>Are you satisfied with the product?</Typography>
+              <Text>Are you satisfied with the product?</Text>
               <Rating
                 name='simple-controlled'
                 value={rating}
-                onChange={(event, newValue) => {
+                onChange={(newValue) => {
                   setRating(newValue);
                 }}
               />

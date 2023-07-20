@@ -1,6 +1,6 @@
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Link from 'next/link';
 import { FC } from 'react';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 
 import { ISwiper } from '@/data';
 
@@ -32,7 +32,7 @@ const ItemSwiper: FC<ISwiper> = (item) => {
           className='slider-button absolute animate-arrow-top rounded-md bg-black py-[14px] px-8 text-white transition-all hover:bg-amber-400'
         >
           <span className='font-semibold'>Start Shopping</span>
-          <KeyboardArrowRightIcon />
+          <MdKeyboardArrowRight />
         </Link>
       </div>
     </div>

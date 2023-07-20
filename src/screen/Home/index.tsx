@@ -1,10 +1,12 @@
-import AirplanemodeActiveOutlinedIcon from '@mui/icons-material/AirplanemodeActiveOutlined';
-import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
-import KeyboardReturnOutlinedIcon from '@mui/icons-material/KeyboardReturnOutlined';
-import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import {
+  MdAirplanemodeActive,
+  MdKeyboardArrowRight,
+  MdKeyboardReturn,
+  MdPayment,
+} from 'react-icons/md';
 import { toast } from 'react-toastify';
 import { Autoplay, EffectFade, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -32,21 +34,17 @@ interface IService {
 
 const services: IService[] = [
   {
-    icon: (
-      <AirplanemodeActiveOutlinedIcon style={{ width: '2em', height: '2em' }} />
-    ),
+    icon: <MdAirplanemodeActive style={{ width: '2em', height: '2em' }} />,
     title: 'Free Worldwide Shipping',
     content: 'On all orders over $75.00',
   },
   {
-    icon: <PaymentOutlinedIcon style={{ width: '2em', height: '2em' }} />,
+    icon: <MdPayment style={{ width: '2em', height: '2em' }} />,
     title: '100% Payment Secure',
     content: 'We ensure secure payment with PEV',
   },
   {
-    icon: (
-      <KeyboardReturnOutlinedIcon style={{ width: '2em', height: '2em' }} />
-    ),
+    icon: <MdKeyboardReturn style={{ width: '2em', height: '2em' }} />,
     title: '30 Days Return',
     content: 'Return it within 20 day for an exchange',
   },
@@ -215,7 +213,7 @@ const Home: NextPage & WithLayout = () => {
                 <Link href='/' className='mt-2'>
                   <span className='font-bold'>Learn more</span>
                   <span>
-                    <KeyboardArrowRightOutlinedIcon />
+                    <MdKeyboardArrowRight />
                   </span>
                 </Link>
               </div>

@@ -1,11 +1,8 @@
-import AddIcon from '@mui/icons-material/Add';
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
-import RemoveIcon from '@mui/icons-material/Remove';
-import { Button } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { Button, useMantineTheme } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { MdAdd, MdOutlineLocalGroceryStore, MdRemove } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
 import Layout from '@/components/layout/Layout';
@@ -31,8 +28,8 @@ const ProductDetail: WithLayout = () => {
   const [item, setItemDetail] = React.useState<Product>();
   const [quantityItem, setQuantityItem] = React.useState(1);
 
-  const theme = useTheme();
-  const md = useMediaQuery(theme.breakpoints.down('md'));
+  const theme = useMantineTheme();
+  const md = useMediaQuery(theme.breakpoints.md);
 
   const handleAddToCart = async ({ itemId, quantity }: ReqCartItem) => {
     const items: ReqCartItem[] = [];
@@ -114,26 +111,25 @@ const ProductDetail: WithLayout = () => {
               <div className='flex gap-4'>
                 <span className='mt-2'>Quantity</span>
                 <div className='flex justify-between'>
-                  <span>
+                  <div className='flex items-center'>
                     <ButtonCart
                       disabled={quantityItem === 1}
                       onClick={() => setQuantityItem(quantityItem - 1)}
                     >
-                      <RemoveIcon />
+                      <MdRemove />
                     </ButtonCart>
                     <ButtonCart title={String(quantityItem)} />
                     <ButtonCart
                       onClick={() => setQuantityItem(quantityItem + 1)}
                     >
-                      <AddIcon />
+                      <MdAdd />
                     </ButtonCart>
-                  </span>
+                  </div>
                 </div>
               </div>
               <div>
                 <Button
-                  startIcon={<LocalGroceryStoreIcon fontSize='large' />}
-                  variant='outlined'
+                  variant='default'
                   color='primary'
                   size='medium'
                   className='h-12 w-60 text-base'
@@ -141,7 +137,8 @@ const ProductDetail: WithLayout = () => {
                     handleAddToCart({ itemId: item.id, quantity: quantityItem })
                   }
                 >
-                  Add to cart
+                  <MdOutlineLocalGroceryStore />
+                  <span className='ml-2'>Add to cart</span>
                 </Button>
               </div>
             </div>

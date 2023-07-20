@@ -1,15 +1,11 @@
 // form
 // @mui
-import { TextField, TextFieldProps } from '@mui/material';
+import { FileInput } from '@mantine/core';
 import { Controller, useFormContext } from 'react-hook-form';
 
 // ----------------------------------------------------------------------
 
-type Props = TextFieldProps & {
-  name: string;
-};
-
-export default function RHFTextField({ name, helperText, ...other }: Props) {
+export default function RHFTextField({ name, helperText, ...other }: any) {
   const { control } = useFormContext();
 
   return (
@@ -17,7 +13,7 @@ export default function RHFTextField({ name, helperText, ...other }: Props) {
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <TextField
+        <FileInput
           {...field}
           fullWidth
           value={

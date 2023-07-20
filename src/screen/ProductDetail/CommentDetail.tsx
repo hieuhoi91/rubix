@@ -1,4 +1,4 @@
-import { Avatar, Rating, Typography } from '@mui/material';
+import { Avatar, Rating, Text } from '@mantine/core';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -45,10 +45,10 @@ const CommentDetail = () => {
                   readOnly
                   size='small'
                 />
-                <Typography>
+                <Text>
                   {formatTime(review.updated_at).time1.split('.')[0]}&nbsp;
                   {formatTime(review.created_at).date}
-                </Typography>
+                </Text>
                 <span className='font-medium'>{review.content}</span>
               </div>
             </div>

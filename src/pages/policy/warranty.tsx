@@ -2,7 +2,7 @@ import { Warranty } from '@/screen';
 
 export default Warranty;
 
-export const getServerSideProps = () => {
+export const getStaticProps = () => {
   return {
     props: {},
   };

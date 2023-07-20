@@ -1,5 +1,5 @@
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import React from 'react';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 
 import { IBlog } from '@/data';
 
@@ -29,8 +29,8 @@ const Blog = ({ item }: { item: IBlog }) => {
       <button className='mt-6 flex h-full w-full items-end'>
         <div className='flex h-14 w-36 items-center justify-center gap-1 rounded-md border-2 font-semibold transition-all hover:border-amber-400 hover:text-amber-400'>
           <span>Read More</span>
-          <span>
-            <KeyboardArrowRightIcon />
+          <span className='text-2xl'>
+            <MdKeyboardArrowRight />
           </span>
         </div>
       </button>

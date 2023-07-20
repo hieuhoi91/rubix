@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button, Modal } from '@mui/material';
+import { Box, Button, Modal } from '@mantine/core';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -130,25 +130,14 @@ export const PaymentCart: React.FC<Props> = ({ typePayment }) => {
   const openPayment = useAppSelector(selectOpenPayment);
   const handleClose = () => dispatch(setOpenPayment(false));
 
-  const style = {
-    position: 'absolute' as const,
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    boxShadow: 24,
-    p: 4,
-  };
-
   return (
     <Modal
-      open={openPayment}
+      opened={openPayment}
       onClose={handleClose}
       aria-labelledby='modal-modal-title'
       aria-describedby='modal-modal-description'
     >
-      <Box sx={style}>
+      <Box>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <div className='flex items-center justify-center bg-blue-300 p-2'>
             <div className='flex h-auto flex-col gap-2 rounded-lg bg-white p-3'>

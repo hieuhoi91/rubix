@@ -1,7 +1,6 @@
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 import BgBanner from '@/components/common/BgBanner';
 import Layout from '@/components/layout/Layout';
@@ -198,7 +197,7 @@ const Collections: WithLayout = () => {
           <div className='flex items-center justify-between pt-16 text-gray-700'>
             <div className='flex gap-2'>
               <ButtonPage onClick={handlePrevPage}>
-                <KeyboardDoubleArrowLeftIcon />
+                <MdKeyboardArrowLeft />
               </ButtonPage>
               {Array(pageCount > 2 ? COUNT_PAGES_SHOW : pageCount)
                 .fill(null)
@@ -217,7 +216,7 @@ const Collections: WithLayout = () => {
                   />
                 ))}
               <ButtonPage onClick={handleNextPage}>
-                <KeyboardDoubleArrowRightIcon />
+                <MdKeyboardArrowRight />
               </ButtonPage>
             </div>
             <span>

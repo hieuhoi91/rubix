@@ -1,8 +1,10 @@
-import AddIcon from '@mui/icons-material/Add';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
+import {
+  MdAdd,
+  MdKeyboardArrowDown,
+  MdKeyboardArrowRight,
+} from 'react-icons/md';
 
 import NextImage from '@/components/NextImage';
 
@@ -57,7 +59,7 @@ export const SubItem: FC<PropsSubItem> = (props) => {
       >
         {isHover || itemChoose ? (
           <span className='flex items-center justify-center text-white transition-all'>
-            <KeyboardArrowRightIcon style={{ width: '16px', height: '16px' }} />
+            <MdKeyboardArrowRight style={{ width: '16px', height: '16px' }} />
           </span>
         ) : null}
       </span>
@@ -96,7 +98,7 @@ export const SubColorItem = ({ item }: { item: string }) => {
       >
         {isHover || colorChoose ? (
           <span className='flex items-center justify-center text-white transition-all'>
-            <AddIcon style={{ width: '16px', height: '16px' }} />
+            <MdAdd style={{ width: '16px', height: '16px' }} />
           </span>
         ) : null}
       </span>
@@ -135,7 +137,7 @@ export const SubPriceItem = ({ item }: { item: string }) => {
       >
         {isHover || priceChoose ? (
           <span className='flex items-center justify-center text-white transition-all'>
-            <KeyboardArrowDownIcon style={{ width: '16px', height: '16px' }} />
+            <MdKeyboardArrowDown style={{ width: '16px', height: '16px' }} />
           </span>
         ) : null}
       </span>

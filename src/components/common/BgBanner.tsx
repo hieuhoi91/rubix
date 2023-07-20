@@ -1,5 +1,5 @@
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import React, { FC } from 'react';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 
 import NextImage from '@/components/NextImage';
 
@@ -21,7 +21,7 @@ const BgBanner: FC<PropsBgBanner> = (props) => {
         <h1 className='mb-6 text-5xl font-bold'>{props.nav}</h1>
         <div className='flex items-center gap-2 text-sm text-gray-700'>
           <span>Home</span>
-          <KeyboardArrowRightIcon style={{ fontSize: '18px' }} />
+          <MdKeyboardArrowRight style={{ fontSize: '18px' }} />
           <span className='text-gray-400'>{props.nav}</span>
         </div>
       </div>

@@ -1,7 +1,7 @@
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 
 import { useAppDispatch } from '@/app/hooks';
 import { setSubItemChoose } from '@/features/products/productSlice';
@@ -50,7 +50,7 @@ const FilterCategories: React.FC<ProductCategoriesProps> = ({
           >
             {isHover || id === 'all' ? (
               <span className='flex items-center justify-center text-white transition-all'>
-                <KeyboardArrowRightIcon
+                <MdKeyboardArrowRight
                   style={{ width: '16px', height: '16px' }}
                 />
               </span>

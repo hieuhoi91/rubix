@@ -1,16 +1,11 @@
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import Menu from '@mui/material/Menu';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { MdFormatListBulleted } from 'react-icons/md';
 
 import { useAppDispatch } from '@/app/hooks';
 import { setSubItemChoose } from '@/features/products/productSlice';
 import { Category } from '@/shared/types/categories';
 import { ReqSearchProduct } from '@/shared/types/itemType';
-
-import { SubItem } from './SubItem';
 
 interface ProductCategoriesProps {
   categories: Category[];
@@ -50,16 +45,10 @@ const PoperFilterCategories: React.FC<ProductCategoriesProps> = ({
         onClick={handleClick}
       >
         <span className=' flex gap-2'>
-          <FormatListBulletedIcon className=' cursor-pointer' />
+          <MdFormatListBulleted className=' cursor-pointer' />
         </span>
       </div>
-      <Menu
-        anchorEl={anchorEl}
-        id='account-menu'
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-      >
+      {/* <Menu id='account-menu' opened={open} onClose={handleClose}>
         <div className='border-b px-4 py-1'>
           <h4 className='mb-10'>Product Categories</h4>
           <ul className='flex w-full flex-col gap-4 '>
@@ -76,7 +65,7 @@ const PoperFilterCategories: React.FC<ProductCategoriesProps> = ({
               >
                 {isHover || id === 'all' ? (
                   <span className='flex items-center justify-center text-white transition-all'>
-                    <KeyboardArrowRightIcon
+                    <MdKeyboardArrowRight
                       style={{ width: '16px', height: '16px' }}
                     />
                   </span>
@@ -96,7 +85,7 @@ const PoperFilterCategories: React.FC<ProductCategoriesProps> = ({
             ))}
           </ul>
         </div>
-      </Menu>
+      </Menu> */}
     </div>
   );
 };
