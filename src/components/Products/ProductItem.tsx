@@ -25,9 +25,9 @@ const ProductItem = ({ item }: { item: Product }) => {
     try {
       const _ = await CmsApi.addToCart(items);
       dispatch(fetchTotal());
-      toast.success('Thêm vào giỏ hàng thành công');
+      toast.success('Add to cart success');
     } catch (error) {
-      toast.error('Thêm vào giỏ hàng thất bại');
+      toast.error('Add to cart fail');
     }
   };
 

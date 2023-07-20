@@ -77,7 +77,7 @@ export default NextAuth({
           }
           return null; // if the data is null, return null
         } catch (e: any) {
-          throw new Error(e.response.data.message); // if the server response is an error, throw an error with the message from the server
+          console.log(e.response.data.message); // if the server response is an error, throw an error with the message from the server
         }
       },
     }),
