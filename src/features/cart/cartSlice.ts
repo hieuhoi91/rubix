@@ -18,7 +18,7 @@ export const fetchTotal = createAsyncThunk('cart/fetchTotal', async () => {
     return response.data.data.cart_items;
   } catch (error) {
     // Xử lý lỗi nếu cần thiết
-    console.log('Failed to fetch total');
+    throw new Error('Failed to fetch total');
   }
 });
 
