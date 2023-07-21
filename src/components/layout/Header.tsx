@@ -172,7 +172,7 @@ export default function Header() {
           </ul>
         ) : (
           <div className='flex items-end justify-center'>
-            <span>{session.token.user.username}</span>
+            <span>{session?.token.user.username}</span>
             <div className='hidden cursor-pointer px-2 hover:text-yellow-300 lg:block'>
               <SearchHeader />
             </div>

@@ -16,7 +16,7 @@ axiosClient.interceptors.request.use(
     if (session) {
       (request.headers as AxiosHeaders).set(
         'Authorization',
-        `Bearer ${session.token.user.accessToken}`
+        `Bearer ${session?.token.user.accessToken}`
       );
     } else if (axios.defaults.headers.common.Authorization && request.headers) {
       (request.headers as AxiosHeaders).set(
