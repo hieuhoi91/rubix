@@ -1,8 +1,11 @@
+import { useFormik } from 'formik';
 import React from 'react';
+import * as Yup from 'yup';
 
 import { Input } from '@/components/common';
 import Layout from '@/components/layout/Layout';
 
+import { CmsApi } from '@/api/cms-api';
 import { WithLayout } from '@/shared/types';
 
 interface PropsContact {
@@ -30,6 +33,28 @@ const data: PropsContact[] = [
 ];
 
 const Contact: WithLayout = () => {
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required('Required'),
+      email: Yup.string().email('Invalid email address').required('Required'),
+      message: Yup.string().required('Required'),
+    }),
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        const _ = await CmsApi.sendMail(values.message);
+      } catch (error) {
+        console.log(error);
+      }
+
+      resetForm();
+    },
+  });
+
   return (
     <div>
       <iframe
@@ -58,14 +83,50 @@ const Contact: WithLayout = () => {
               ))}
             </div>
           </div>
-          <form className='flex w-1/2 flex-col gap-4'>
-            <Input type='text' placeholder='Name' />
-            <Input type='text' placeholder='Email' className='rounded' />
+          <form
+            onSubmit={formik.handleSubmit}
+            className='flex w-1/2 flex-col gap-4'
+          >
+            <Input
+              type='text'
+              name='name'
+              placeholder='Name'
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.name}
+            />
+            {formik.touched.name && formik.errors.name ? (
+              <div className='text-sm text-red-600'>{formik.errors.name}</div>
+            ) : null}
+            <Input
+              type='text'
+              name='email'
+              placeholder='Email'
+              className='rounded'
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+            />
+            {formik.touched.email && formik.errors.email ? (
+              <div className='text-sm text-red-600'>{formik.errors.email}</div>
+            ) : null}
             <textarea
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.message}
+              name='message'
               placeholder='Message'
               className='mb-4 h-32 w-full rounded border border-gray-300 pt-4 pl-2 outline-none'
             />
-            <button className='h-14 w-full rounded border border-gray-300 transition-all hover:border-amber-400 hover:text-amber-400'>
+            {formik.touched.message && formik.errors.message ? (
+              <div className='text-sm text-red-600'>
+                {formik.errors.message}
+              </div>
+            ) : null}
+            <button
+              type='submit'
+              className='h-14 w-full rounded border border-gray-300 transition-all hover:border-amber-400 hover:text-amber-400'
+            >
               <span>SEND MESSAGE</span>
             </button>
           </form>
