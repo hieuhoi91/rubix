@@ -46,7 +46,8 @@ const Contact: WithLayout = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
-        const _ = await CmsApi.sendMail(values.message);
+        const text = `Người dùng: ${values.name} \n Có email: ${values.email} \n Gửi tin nhắn với nội dung: ${values.message}`;
+        const _ = await CmsApi.sendMail(text);
       } catch (error) {
         console.log(error);
       }

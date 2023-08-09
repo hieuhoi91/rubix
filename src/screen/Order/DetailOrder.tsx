@@ -1,6 +1,6 @@
 import { Divider, Popover, Text } from '@mantine/core';
 import React from 'react';
-import { MdLocalShipping, MdQuestionAnswer, MdStore } from 'react-icons/md';
+import { MdQuestionAnswer, MdStore } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
 import { CmsApi } from '@/api/cms-api';
@@ -64,18 +64,15 @@ export const OrderDetails = ({ orders }: OrderDetailProps) => {
                   handleCancelOrder(orders.id);
                 }}
               >
-                <span className='mr-3 h-8 w-11 cursor-pointer border bg-red-500 p-1 text-white'>
+                <span className='mr-3 h-8 cursor-pointer border bg-red-500 p-1 text-white'>
                   Cancel
                 </span>
-                <MdLocalShipping />
                 {OrderStatus[orders.status]}
               </div>
             </div>
           )}
           {orders.status === 'cancelled' && (
-            <span className='ml-1 h-8 w-16 border bg-red-500 p-1'>
-              Cancelled
-            </span>
+            <span className='ml-1 h-8 border bg-red-500 p-1'>Cancelled</span>
           )}
           <MdQuestionAnswer className='mt-[3px] h-5 w-5 cursor-pointer rounded-xl border border-dark text-black' />
           <div
