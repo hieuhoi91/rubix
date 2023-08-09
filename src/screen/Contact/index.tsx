@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import React from 'react';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
 import { Input } from '@/components/common';
@@ -46,8 +47,9 @@ const Contact: WithLayout = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
-        const text = `Người dùng: ${values.name} \n Có email: ${values.email} \n Gửi tin nhắn với nội dung: ${values.message}`;
+        const text = `Username: ${values.name} \n Email: ${values.email} \n Message: ${values.message}`;
         const _ = await CmsApi.sendMail(text);
+        toast.success('Send mail success');
       } catch (error) {
         console.log(error);
       }
