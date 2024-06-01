@@ -210,10 +210,10 @@ const Home: NextPage & WithLayout = () => {
                 <span>{service.icon}</span>
                 <h4 className='font-semibold'>{service.title}</h4>
                 <p>{service.content}</p>
-                <Link href='/' className='mt-2'>
+                <Link href='/' className='mt-2 flex items-center'>
                   <span className='font-bold'>Learn more</span>
                   <span>
-                    <MdKeyboardArrowRight />
+                    <MdKeyboardArrowRight size={24} />
                   </span>
                 </Link>
               </div>
