@@ -51,17 +51,26 @@ export const PaymentCart: React.FC<Props> = ({ typePayment }) => {
       .max(16, 'Invalid card number'),
     dateCard: Yup.string()
       .required('Please enter expiration date')
-      .test('valid-date', 'Invalid expiry date', function (value) {
-        if (!value) return false;
+      .matches(/^(0[1-9]|1[0-2])\/\d{4}$/, 'Invalid expiry date')
+      .test(
+        'valid-date',
+        'Expiry date cannot be in the past',
+        function (value) {
+          if (!value) return false;
+          const [month, year] = value.split('/');
+          const monthNum = Number(month);
+          const yearNum = Number(year);
+          if (!monthNum || !yearNum) return false;
 
-        const [month, year] = value.split('/');
-        if (!month || !year) return false;
-        //check month between 1 and 12 and year between < current year get two last number
-        const currentYear = new Date().getFullYear() % 100;
-        if (Number(month) < 1 || Number(month) > 12) return false;
-        if (Number(year) > currentYear) return false;
-        return true;
-      }),
+          const now = new Date();
+          const currentMonth = now.getMonth() + 1;
+          const currentYear = now.getFullYear();
+
+          if (yearNum < currentYear) return false;
+          if (yearNum === currentYear && monthNum < currentMonth) return false;
+          return true;
+        }
+      ),
     CVV: Yup.string()
 
       .required('Please enter CVV')

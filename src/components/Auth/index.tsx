@@ -5,12 +5,11 @@ interface Props {
   children: React.ReactNode;
 }
 const Auth = ({ children }: Props) => {
-  const { data: session } = useSession();
-  console.log(session);
+  const { data: session, status } = useSession();
 
   useEffect(() => {
-    if (!session) signOut();
-  }, [session]);
+    if (status === 'unauthenticated') signOut();
+  }, [status]);
   return <>{children}</>;
 };
 
